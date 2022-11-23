@@ -25,7 +25,7 @@ if (hours.today.isOpen) {
 	if (getTime(hours.today.sessionHours.regularMarket[0].end) !== "16:00") {
 		var closeMessage = `**The market closes early today at ${moment(
 			hours.today.sessionHours.regularMarket[0].end
-		).format("lt")}.** `;
+		).format("LT")}.** `;
 	} else {
 		var closeMessage = "";
 	}
