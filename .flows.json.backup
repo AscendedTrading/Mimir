@@ -1047,7 +1047,7 @@
                 "t": "set",
                 "p": "core",
                 "pt": "msg",
-                "to": "positions",
+                "to": "quote",
                 "tot": "str"
             }
         ],
