@@ -672,7 +672,7 @@
         "type": "function",
         "z": "f1c27791682cd627",
         "name": "Parse Cards",
-        "func": "// const jssoup = global.get('jssoup')\n\njssoup = jsSoup.default\n\ndata = []\n\nmsg.payload.forEach(card =>{ \n    \n    var soup = new jssoup(card);\n    \n    meeting = soup.find('i')\n    \n    entry = {}\n    entry.meetingDate = meeting.text.trim()\n    entry.rows = []\n    \n    rows = soup.findAll('tr')\n\n    rows.forEach(row =>{\n        \n      row = row.text.split(\" \")\n      \n      if(row[0] !== \"Target\") {\n      \n          targetRate = `${row[0]} - ${row[2]}`\n          \n          row = row[3].split(\"%\")\n          \n          entry.rows.push({\n              \"targetRate\": targetRate,\n              \"currentProb\": row[0],\n              \"previousDayProb\": row[1],\n              \"previousWeekProb\": row[2]\n          })\n\n      }\n        \n    })\n    \n    data.push(entry)\n    \n})\n\nmsg.data = data\n\nreturn msg;",
+        "func": "jssoup = jsSoup.default\n\ndata = []\n\nmsg.payload.forEach(card =>{ \n    \n    var soup = new jssoup(card);\n    \n    meeting = soup.find('i')\n    \n    entry = {}\n    entry.meetingDate = meeting.text.trim()\n    entry.rows = []\n    \n    rows = soup.findAll('tr')\n\n    rows.forEach(row =>{\n        \n      row = row.text.split(\" \")\n      \n      if(row[0] !== \"Target\") {\n      \n          targetRate = `${row[0]} - ${row[2]}`\n          \n          row = row[3].split(\"%\")\n          \n          entry.rows.push({\n              \"targetRate\": targetRate,\n              \"currentProb\": row[0],\n              \"previousDayProb\": row[1],\n              \"previousWeekProb\": row[2]\n          })\n\n      }\n        \n    })\n    \n    data.push(entry)\n    \n})\n\nmsg.data = data\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -877,7 +877,7 @@
             "3df6b4ba4e138e27"
         ],
         "x": 245,
-        "y": 320,
+        "y": 340,
         "wires": [
             [
                 "4ac02535312e527f"
@@ -905,7 +905,7 @@
         "to": "",
         "reg": false,
         "x": 350,
-        "y": 320,
+        "y": 340,
         "wires": [
             [
                 "edccce7940c99df0"
@@ -921,8 +921,8 @@
         "links": [
             "491c7d96c6728cb5"
         ],
-        "x": 485,
-        "y": 380,
+        "x": 605,
+        "y": 480,
         "wires": []
     },
     {
@@ -932,7 +932,7 @@
         "name": "Discord Out",
         "info": "# Send message to the #playground channel in Valhalla\n\nUse a `link out` node to connect to `Discord Out`.\n\n### Send a text message\n`msg.payload = \"Hello World\"`\n\n### Send an embed \nHelpful tool: https://glitchii.github.io/embedbuilder/\n`msg.embeds = \n        {\n            \"title\": \"Hello ~~people~~ world :wave:\",\n            \"description\": \"You can use [links](https://discord.com) or emojis :smile: 😎\\n```\\nAnd also code blocks\\n```\",\n            \"color\": 4321431,\n            \"timestamp\": \"2022-11-25T03:52:05.554Z\",\n            \"url\": \"https://discord.com\",\n            \"author\": {\n                \"name\": \"Author name\",\n                \"url\": \"https://discord.com\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"thumbnail\": {\n                \"url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"image\": {\n                \"url\": \"https://glitchii.github.io/embedbuilder/assets/media/banner.png\"\n            },\n            \"footer\": {\n                \"text\": \"Footer text\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"fields\": [\n                {\n                    \"name\": \"Field 1, *lorem* **ipsum**, ~~dolor~~\",\n                    \"value\": \"Field value\"\n                },\n                {\n                    \"name\": \"Field 2\",\n                    \"value\": \"You can use custom emojis <:Kekwlaugh:722088222766923847>. <:GangstaBlob:742256196295065661>\",\n                    \"inline\": false\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"Fields can be inline\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"*Lorem ipsum*\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"value\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Another field\",\n                    \"value\": \"> Nope, didn't forget about this\",\n                    \"inline\": false\n                }\n            ]\n        }\n    `",
         "x": 350,
-        "y": 280,
+        "y": 300,
         "wires": []
     },
     {
@@ -967,7 +967,7 @@
         "type": "comment",
         "z": "018d3d9f8b1baf1f",
         "name": "MCAL Data",
-        "info": "Get Mcal data returned.\n\nUse a \"call link\" node to have data sent to the msg.payload of your next node.",
+        "info": "Get Mcal data returned.\n\nUse a \"call link\" node to have data sent to the msg.payload of your next node.\n\nSee the Example 4 in the tutorials flow.",
         "x": 350,
         "y": 400,
         "wires": []
@@ -983,6 +983,108 @@
         "wires": [
             [
                 "96c1084e0639a3a5"
+            ]
+        ]
+    },
+    {
+        "id": "5f3604aa1013aaee",
+        "type": "change",
+        "z": "018d3d9f8b1baf1f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "core",
+                "pt": "msg",
+                "to": "positions",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 540,
+        "wires": [
+            [
+                "edccce7940c99df0"
+            ]
+        ]
+    },
+    {
+        "id": "035972576dbdc267",
+        "type": "comment",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Positions Data",
+        "info": "Appends positions data to `msg.payload`",
+        "x": 350,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "05605e40d59c1abc",
+        "type": "link in",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Positions Data",
+        "links": [],
+        "x": 245,
+        "y": 540,
+        "wires": [
+            [
+                "5f3604aa1013aaee"
+            ]
+        ]
+    },
+    {
+        "id": "3cc523b116753f59",
+        "type": "change",
+        "z": "018d3d9f8b1baf1f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "core",
+                "pt": "msg",
+                "to": "quote",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 640,
+        "wires": [
+            [
+                "edccce7940c99df0"
+            ]
+        ]
+    },
+    {
+        "id": "3155f25f57ac9d2c",
+        "type": "comment",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Quote Data",
+        "info": "Appends quote data to `msg.payload`. Requires a ticker symbol as `msg.ticker`.",
+        "x": 350,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "498b376f5b88d416",
+        "type": "link in",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Quote Data",
+        "links": [],
+        "x": 245,
+        "y": 640,
+        "wires": [
+            [
+                "3cc523b116753f59"
             ]
         ]
     }
