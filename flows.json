@@ -1,0 +1,84 @@
+[
+    {
+        "id": "84134100670d554b",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b63fcc8ba57942c1",
+        "type": "inject",
+        "z": "84134100670d554b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 200,
+        "wires": [
+            [
+                "fde5f82253615978"
+            ]
+        ]
+    },
+    {
+        "id": "fde5f82253615978",
+        "type": "function",
+        "z": "84134100670d554b",
+        "name": "Hello World",
+        "func": "node.warn(\"Hello World\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "7131e2df87afec92"
+            ]
+        ]
+    },
+    {
+        "id": "7131e2df87afec92",
+        "type": "debug",
+        "z": "84134100670d554b",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "cfc311f303c73af4",
+        "type": "comment",
+        "z": "84134100670d554b",
+        "name": "Example Flow",
+        "info": "",
+        "x": 150,
+        "y": 160,
+        "wires": []
+    }
+]
