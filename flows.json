@@ -8,6 +8,32 @@
         "env": []
     },
     {
+        "id": "018d3d9f8b1baf1f",
+        "type": "tab",
+        "label": "Mimir Core Connections",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7969f211d9887452",
+        "type": "websocket-client",
+        "path": "ws://mimir.ascendedtrading.com/ws/core",
+        "tls": "",
+        "wholemsg": "true",
+        "hb": "30",
+        "subprotocol": ""
+    },
+    {
+        "id": "fe96062b293f302d",
+        "type": "websocket-client",
+        "path": "ws://mimir.ascendedtrading.com/ws/dev",
+        "tls": "",
+        "wholemsg": "true",
+        "hb": "30",
+        "subprotocol": ""
+    },
+    {
         "id": "b63fcc8ba57942c1",
         "type": "inject",
         "z": "84134100670d554b",
@@ -80,5 +106,56 @@
         "x": 150,
         "y": 160,
         "wires": []
+    },
+    {
+        "id": "ae5cf8f5fe631665",
+        "type": "websocket in",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Mimir Core WebSocket In",
+        "server": "",
+        "client": "7969f211d9887452",
+        "x": 170,
+        "y": 80,
+        "wires": [
+            [
+                "19072270ad5a3489"
+            ]
+        ]
+    },
+    {
+        "id": "19072270ad5a3489",
+        "type": "link out",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Core In",
+        "mode": "link",
+        "links": [],
+        "x": 315,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "1b6395fe324fb456",
+        "type": "websocket out",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Mimir Core WebSocket Out",
+        "server": "",
+        "client": "fe96062b293f302d",
+        "x": 240,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "491c7d96c6728cb5",
+        "type": "link in",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Core Out",
+        "links": [],
+        "x": 75,
+        "y": 120,
+        "wires": [
+            [
+                "1b6395fe324fb456"
+            ]
+        ]
     }
 ]
