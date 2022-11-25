@@ -108,6 +108,85 @@
         "wires": []
     },
     {
+        "id": "0812b5a5d01ccaa5",
+        "type": "comment",
+        "z": "84134100670d554b",
+        "name": "Example Flow 2",
+        "info": "",
+        "x": 160,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "28251d9586747408",
+        "type": "inject",
+        "z": "84134100670d554b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 320,
+        "wires": [
+            [
+                "205cbd7d50058ef6"
+            ]
+        ]
+    },
+    {
+        "id": "205cbd7d50058ef6",
+        "type": "change",
+        "z": "84134100670d554b",
+        "name": "set msg.payload to \"Hello World\"",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Hello World",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 320,
+        "wires": [
+            [
+                "07a7ad65a01cce3e"
+            ]
+        ]
+    },
+    {
+        "id": "07a7ad65a01cce3e",
+        "type": "link out",
+        "z": "84134100670d554b",
+        "name": "Discord Out Shortcut",
+        "mode": "link",
+        "links": [
+            "18e87e645a79b0eb"
+        ],
+        "x": 535,
+        "y": 320,
+        "wires": []
+    },
+    {
         "id": "ae5cf8f5fe631665",
         "type": "websocket in",
         "z": "018d3d9f8b1baf1f",
@@ -118,7 +197,7 @@
         "y": 80,
         "wires": [
             [
-                "19072270ad5a3489"
+                "4e45b7b7877a11f0"
             ]
         ]
     },
@@ -129,8 +208,8 @@
         "name": "Core In",
         "mode": "link",
         "links": [],
-        "x": 315,
-        "y": 80,
+        "x": 365,
+        "y": 60,
         "wires": []
     },
     {
@@ -141,7 +220,7 @@
         "server": "",
         "client": "fe96062b293f302d",
         "x": 240,
-        "y": 120,
+        "y": 160,
         "wires": []
     },
     {
@@ -149,13 +228,127 @@
         "type": "link in",
         "z": "018d3d9f8b1baf1f",
         "name": "Core Out",
-        "links": [],
+        "links": [
+            "edccce7940c99df0"
+        ],
         "x": 75,
-        "y": 120,
+        "y": 160,
         "wires": [
             [
                 "1b6395fe324fb456"
             ]
         ]
+    },
+    {
+        "id": "4e45b7b7877a11f0",
+        "type": "switch",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Link Call Check",
+        "property": "_linkSource",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 315,
+        "y": 80,
+        "wires": [
+            [
+                "19072270ad5a3489"
+            ],
+            [
+                "dea0416b9fe008fb"
+            ]
+        ],
+        "outputLabels": [
+            "Firehouse",
+            "Return to calling node"
+        ],
+        "l": false
+    },
+    {
+        "id": "dea0416b9fe008fb",
+        "type": "link out",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Core In Link Call",
+        "mode": "return",
+        "links": [],
+        "x": 365,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "18e87e645a79b0eb",
+        "type": "link in",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Discord Out",
+        "links": [
+            "07a7ad65a01cce3e"
+        ],
+        "x": 85,
+        "y": 300,
+        "wires": [
+            [
+                "4ac02535312e527f"
+            ]
+        ],
+        "info": "# Send message to the #playground channel in Valhalla\n# \n\n### Send a text message\n`msg.payload = \"Hello World\"`\n\n### Send an embed \nHelpful tool: https://glitchii.github.io/embedbuilder/\n`msg.embeds = \n        {\n            \"title\": \"Hello ~~people~~ world :wave:\",\n            \"description\": \"You can use [links](https://discord.com) or emojis :smile: 😎\\n```\\nAnd also code blocks\\n```\",\n            \"color\": 4321431,\n            \"timestamp\": \"2022-11-25T03:52:05.554Z\",\n            \"url\": \"https://discord.com\",\n            \"author\": {\n                \"name\": \"Author name\",\n                \"url\": \"https://discord.com\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"thumbnail\": {\n                \"url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"image\": {\n                \"url\": \"https://glitchii.github.io/embedbuilder/assets/media/banner.png\"\n            },\n            \"footer\": {\n                \"text\": \"Footer text\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"fields\": [\n                {\n                    \"name\": \"Field 1, *lorem* **ipsum**, ~~dolor~~\",\n                    \"value\": \"Field value\"\n                },\n                {\n                    \"name\": \"Field 2\",\n                    \"value\": \"You can use custom emojis <:Kekwlaugh:722088222766923847>. <:GangstaBlob:742256196295065661>\",\n                    \"inline\": false\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"Fields can be inline\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"*Lorem ipsum*\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"value\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Another field\",\n                    \"value\": \"> Nope, didn't forget about this\",\n                    \"inline\": false\n                }\n            ]\n        }\n    `"
+    },
+    {
+        "id": "4ac02535312e527f",
+        "type": "change",
+        "z": "018d3d9f8b1baf1f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "core",
+                "pt": "msg",
+                "to": "discord/out",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 190,
+        "y": 300,
+        "wires": [
+            [
+                "edccce7940c99df0"
+            ]
+        ]
+    },
+    {
+        "id": "edccce7940c99df0",
+        "type": "link out",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Core Out Shortcut",
+        "mode": "link",
+        "links": [
+            "491c7d96c6728cb5"
+        ],
+        "x": 295,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "1cd0176c3668aba9",
+        "type": "comment",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Discord Out",
+        "info": "# Send message to the #playground channel in Valhalla\n# \n\n### Send a text message\n`msg.payload = \"Hello World\"`\n\n### Send an embed \nHelpful tool: https://glitchii.github.io/embedbuilder/\n`msg.embeds = \n        {\n            \"title\": \"Hello ~~people~~ world :wave:\",\n            \"description\": \"You can use [links](https://discord.com) or emojis :smile: 😎\\n```\\nAnd also code blocks\\n```\",\n            \"color\": 4321431,\n            \"timestamp\": \"2022-11-25T03:52:05.554Z\",\n            \"url\": \"https://discord.com\",\n            \"author\": {\n                \"name\": \"Author name\",\n                \"url\": \"https://discord.com\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"thumbnail\": {\n                \"url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"image\": {\n                \"url\": \"https://glitchii.github.io/embedbuilder/assets/media/banner.png\"\n            },\n            \"footer\": {\n                \"text\": \"Footer text\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"fields\": [\n                {\n                    \"name\": \"Field 1, *lorem* **ipsum**, ~~dolor~~\",\n                    \"value\": \"Field value\"\n                },\n                {\n                    \"name\": \"Field 2\",\n                    \"value\": \"You can use custom emojis <:Kekwlaugh:722088222766923847>. <:GangstaBlob:742256196295065661>\",\n                    \"inline\": false\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"Fields can be inline\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"*Lorem ipsum*\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"value\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Another field\",\n                    \"value\": \"> Nope, didn't forget about this\",\n                    \"inline\": false\n                }\n            ]\n        }\n    `",
+        "x": 190,
+        "y": 260,
+        "wires": []
     }
 ]

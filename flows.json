@@ -2,7 +2,7 @@
     {
         "id": "84134100670d554b",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Tutorials",
         "disabled": false,
         "info": "",
         "env": []
@@ -13,6 +13,14 @@
         "label": "Mimir Core Connections",
         "disabled": false,
         "info": "",
+        "env": []
+    },
+    {
+        "id": "f1c27791682cd627",
+        "type": "tab",
+        "label": "Slash Command Examples",
+        "disabled": false,
+        "info": "Example slash commands that can be tweaked. Copy code to a flow under your own name for any deep dev work.\n\nCommands have undergone several iterations and ports so the code is liekly sloppy af.",
         "env": []
     },
     {
@@ -108,6 +116,85 @@
         "wires": []
     },
     {
+        "id": "0812b5a5d01ccaa5",
+        "type": "comment",
+        "z": "84134100670d554b",
+        "name": "Example Flow 2",
+        "info": "",
+        "x": 160,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "28251d9586747408",
+        "type": "inject",
+        "z": "84134100670d554b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 320,
+        "wires": [
+            [
+                "205cbd7d50058ef6"
+            ]
+        ]
+    },
+    {
+        "id": "205cbd7d50058ef6",
+        "type": "change",
+        "z": "84134100670d554b",
+        "name": "set msg.payload to \"Hello World\"",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Hello World",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 320,
+        "wires": [
+            [
+                "07a7ad65a01cce3e"
+            ]
+        ]
+    },
+    {
+        "id": "07a7ad65a01cce3e",
+        "type": "link out",
+        "z": "84134100670d554b",
+        "name": "Discord Out Shortcut",
+        "mode": "link",
+        "links": [
+            "18e87e645a79b0eb"
+        ],
+        "x": 535,
+        "y": 320,
+        "wires": []
+    },
+    {
         "id": "ae5cf8f5fe631665",
         "type": "websocket in",
         "z": "018d3d9f8b1baf1f",
@@ -149,7 +236,9 @@
         "type": "link in",
         "z": "018d3d9f8b1baf1f",
         "name": "Core Out",
-        "links": [],
+        "links": [
+            "edccce7940c99df0"
+        ],
         "x": 75,
         "y": 160,
         "wires": [
@@ -201,6 +290,258 @@
         "links": [],
         "x": 365,
         "y": 100,
+        "wires": []
+    },
+    {
+        "id": "18e87e645a79b0eb",
+        "type": "link in",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Discord Out",
+        "links": [
+            "07a7ad65a01cce3e",
+            "3df6b4ba4e138e27"
+        ],
+        "x": 85,
+        "y": 300,
+        "wires": [
+            [
+                "4ac02535312e527f"
+            ]
+        ],
+        "info": "# Send message to the #playground channel in Valhalla\n# \n\n### Send a text message\n`msg.payload = \"Hello World\"`\n\n### Send an embed \nHelpful tool: https://glitchii.github.io/embedbuilder/\n`msg.embeds = \n        {\n            \"title\": \"Hello ~~people~~ world :wave:\",\n            \"description\": \"You can use [links](https://discord.com) or emojis :smile: 😎\\n```\\nAnd also code blocks\\n```\",\n            \"color\": 4321431,\n            \"timestamp\": \"2022-11-25T03:52:05.554Z\",\n            \"url\": \"https://discord.com\",\n            \"author\": {\n                \"name\": \"Author name\",\n                \"url\": \"https://discord.com\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"thumbnail\": {\n                \"url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"image\": {\n                \"url\": \"https://glitchii.github.io/embedbuilder/assets/media/banner.png\"\n            },\n            \"footer\": {\n                \"text\": \"Footer text\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"fields\": [\n                {\n                    \"name\": \"Field 1, *lorem* **ipsum**, ~~dolor~~\",\n                    \"value\": \"Field value\"\n                },\n                {\n                    \"name\": \"Field 2\",\n                    \"value\": \"You can use custom emojis <:Kekwlaugh:722088222766923847>. <:GangstaBlob:742256196295065661>\",\n                    \"inline\": false\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"Fields can be inline\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"*Lorem ipsum*\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"value\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Another field\",\n                    \"value\": \"> Nope, didn't forget about this\",\n                    \"inline\": false\n                }\n            ]\n        }\n    `"
+    },
+    {
+        "id": "4ac02535312e527f",
+        "type": "change",
+        "z": "018d3d9f8b1baf1f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "core",
+                "pt": "msg",
+                "to": "discord/out",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 190,
+        "y": 300,
+        "wires": [
+            [
+                "edccce7940c99df0"
+            ]
+        ]
+    },
+    {
+        "id": "edccce7940c99df0",
+        "type": "link out",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Core Out Shortcut",
+        "mode": "link",
+        "links": [
+            "491c7d96c6728cb5"
+        ],
+        "x": 295,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "1cd0176c3668aba9",
+        "type": "comment",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Discord Out",
+        "info": "# Send message to the #playground channel in Valhalla\n# \n\n### Send a text message\n`msg.payload = \"Hello World\"`\n\n### Send an embed \nHelpful tool: https://glitchii.github.io/embedbuilder/\n`msg.embeds = \n        {\n            \"title\": \"Hello ~~people~~ world :wave:\",\n            \"description\": \"You can use [links](https://discord.com) or emojis :smile: 😎\\n```\\nAnd also code blocks\\n```\",\n            \"color\": 4321431,\n            \"timestamp\": \"2022-11-25T03:52:05.554Z\",\n            \"url\": \"https://discord.com\",\n            \"author\": {\n                \"name\": \"Author name\",\n                \"url\": \"https://discord.com\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"thumbnail\": {\n                \"url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"image\": {\n                \"url\": \"https://glitchii.github.io/embedbuilder/assets/media/banner.png\"\n            },\n            \"footer\": {\n                \"text\": \"Footer text\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"fields\": [\n                {\n                    \"name\": \"Field 1, *lorem* **ipsum**, ~~dolor~~\",\n                    \"value\": \"Field value\"\n                },\n                {\n                    \"name\": \"Field 2\",\n                    \"value\": \"You can use custom emojis <:Kekwlaugh:722088222766923847>. <:GangstaBlob:742256196295065661>\",\n                    \"inline\": false\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"Fields can be inline\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"*Lorem ipsum*\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"value\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Another field\",\n                    \"value\": \"> Nope, didn't forget about this\",\n                    \"inline\": false\n                }\n            ]\n        }\n    `",
+        "x": 190,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "27906d69ba913f10",
+        "type": "function",
+        "z": "f1c27791682cd627",
+        "name": "Construct Table For Discord",
+        "func": "var rows = []\n\nif(msg.subcommand == \"default\") {\n\n    count = 0\n    \n    while (count < 2) {\n        rows.push([msg.data[count].meetingDate.replace(\" 02:00PM ET\", \"\"), \"\", \"\", \"\"])\n    rows.push([\"Target Rate\", \"Today\", \"-1\", \"-7\"])\n    \n    msg.data[count].rows.forEach(row =>{\n        rows.push([row.targetRate, row.currentProb + \"%\", row.previousDayProb + \"%\", row.previousWeekProb + \"%\"])\n    })\n    \n    rows.push([\"\", \"\", \"\", \"\"])\n    count++\n    }\n} else {\n    matches = 0\n    \n    msg.data.forEach(data => {\n        \n        query = data.meetingDate.split(\" \")\n        query = `${query[0].toUpperCase()} ${query[2]}`\n        \n        if(msg.subcommand.toUpperCase() == query) {\n              rows.push([data.meetingDate.replace(\" 02:00PM ET\", \"\"), \"\", \"\", \"\"])\n    rows.push([\"Target Rate\", \"Today\", \"-1\", \"-7\"])\n    \n    data.rows.forEach(row =>{\n        rows.push([row.targetRate, row.currentProb + \"%\", row.previousDayProb + \"%\", row.previousWeekProb + \"%\"])\n    })\n        }\n        \n    matches++\n        \n        \n    })\n    \n    if(matches == 0) {\n        rows.push([\"No Results Found\", \"\", \"\", \"\"])\n    }\n    \n    \n}\n\nrows.pop()\n\nvar table = \n    new asciiTable.AsciiTable3().setAlign(3, asciiTable.AlignmentEnum.CENTER)\n    .addRowMatrix(rows);\n    \ntable.setStyle('compact');\n\nvar description = table.toString()\n\nmsg.payload = \"```\" + description + \"```\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "asciiTable",
+                "module": "ascii-table3"
+            }
+        ],
+        "x": 1120,
+        "y": 260,
+        "wires": [
+            [
+                "3df6b4ba4e138e27"
+            ]
+        ]
+    },
+    {
+        "id": "6d835c98a7d933c5",
+        "type": "function",
+        "z": "f1c27791682cd627",
+        "name": "Add User Agent / Parse Command",
+        "func": "msg.headers = {};\nmsg.headers['USER-AGENT'] = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36';\n\n// if(msg.interactionObject.options.getString('date'))\n// {\n//     msg.subcommand = msg.interactionObject.options.getString('date')\n    \n// } else {\n//     msg.subcommand = \"default\"\n// }\n\n\nif(msg.date) {\n    msg.subcommand = msg.date\n} else {\n    msg.subcommand = \"default\"\n}\n\n\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "42cba602d3bac2f0"
+            ]
+        ]
+    },
+    {
+        "id": "42cba602d3bac2f0",
+        "type": "http request",
+        "z": "f1c27791682cd627",
+        "name": "Investing.com",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://www.investing.com/central-banks/fed-rate-monitor",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 580,
+        "y": 260,
+        "wires": [
+            [
+                "7b256abe5472915f"
+            ]
+        ]
+    },
+    {
+        "id": "7b256abe5472915f",
+        "type": "html",
+        "z": "f1c27791682cd627",
+        "name": "Grab Cards",
+        "property": "payload",
+        "outproperty": "payload",
+        "tag": "div.cardWrapper",
+        "ret": "html",
+        "as": "single",
+        "x": 750,
+        "y": 260,
+        "wires": [
+            [
+                "cbb32f226e06b0b3"
+            ]
+        ]
+    },
+    {
+        "id": "cbb32f226e06b0b3",
+        "type": "function",
+        "z": "f1c27791682cd627",
+        "name": "Parse Cards",
+        "func": "// const jssoup = global.get('jssoup')\n\njssoup = jsSoup.default\n\ndata = []\n\nmsg.payload.forEach(card =>{ \n    \n    var soup = new jssoup(card);\n    \n    meeting = soup.find('i')\n    \n    entry = {}\n    entry.meetingDate = meeting.text.trim()\n    entry.rows = []\n    \n    rows = soup.findAll('tr')\n\n    rows.forEach(row =>{\n        \n      row = row.text.split(\" \")\n      \n      if(row[0] !== \"Target\") {\n      \n          targetRate = `${row[0]} - ${row[2]}`\n          \n          row = row[3].split(\"%\")\n          \n          entry.rows.push({\n              \"targetRate\": targetRate,\n              \"currentProb\": row[0],\n              \"previousDayProb\": row[1],\n              \"previousWeekProb\": row[2]\n          })\n\n      }\n        \n    })\n    \n    data.push(entry)\n    \n})\n\nmsg.data = data\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "jsSoup",
+                "module": "jssoup"
+            }
+        ],
+        "x": 910,
+        "y": 260,
+        "wires": [
+            [
+                "27906d69ba913f10"
+            ]
+        ]
+    },
+    {
+        "id": "f5bc5b8806607835",
+        "type": "comment",
+        "z": "f1c27791682cd627",
+        "name": "Fed Rate",
+        "info": "",
+        "x": 260,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "fba2be9c0fbd2527",
+        "type": "inject",
+        "z": "f1c27791682cd627",
+        "name": "Date",
+        "props": [
+            {
+                "p": "date",
+                "v": "Dec 2023",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "6d835c98a7d933c5"
+            ]
+        ]
+    },
+    {
+        "id": "08470656f5161693",
+        "type": "inject",
+        "z": "f1c27791682cd627",
+        "name": "Default",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "6d835c98a7d933c5"
+            ]
+        ]
+    },
+    {
+        "id": "3df6b4ba4e138e27",
+        "type": "link out",
+        "z": "f1c27791682cd627",
+        "name": "Discord Out Shortcut",
+        "mode": "link",
+        "links": [
+            "18e87e645a79b0eb"
+        ],
+        "x": 1275,
+        "y": 260,
         "wires": []
     }
 ]
