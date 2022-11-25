@@ -132,7 +132,7 @@
         "type": "comment",
         "z": "84134100670d554b",
         "name": "Example Flow 2",
-        "info": "This flow demonstrates sending a message to discord.\n\n 1. Click the button on the inject node to inject a message (timestamp) into the next node and start the flow\n 2. The change node sets `msg.payload` to \"Hello World\", the discord function converts `msg.payload` into the \"content\" field of a discord message.\n 3. The link out node connects to the `Discord Out` connector which forwards the message to Mimir Core and to the #playground channel is Discord.",
+        "info": "This flow demonstrates sending a message to discord.\n\n 1. Click the button on the inject node to inject a message (timestamp) into the next node and start the flow\n 2. The change node sets `msg.payload` to \"Hello World\", the discord function converts `msg.payload` into the \"content\" field of a discord message.\n 3. The link out node connects to the `Discord Out` connector which forwards the message to Mimir Core and to the #playground channel in Discord.",
         "x": 160,
         "y": 300,
         "wires": []
@@ -511,6 +511,80 @@
         ]
     },
     {
+        "id": "129ad823bf03e17b",
+        "type": "comment",
+        "z": "84134100670d554b",
+        "name": "Example Flow 4",
+        "info": "This stupidly simple example is actually pretty cool.\n\n1. The inject node, we've seen this before.\n2. This is a `link call` node which calls a `link in` node, in this case being the `MCAL Data` node in the \"Mimir Connections\" Flow. The message is sent to Mimir Core via the WebSocket connection and runs through the part of that system that attaches the market calendar data to the payload of the message. Now the cool part is that it runs through Mimir Core as normal, but when the data is returned here, the message comes back in the state it left meaning the `WebSocket In` connection returns the message to the \"calling node\", which again is just this one node here. So essentially this `link call` has an entire process behind it but in pratice simply appends data to the `msg.payload` property.\n3. The data returned can be viewed in the debug pane that we've talked about before.\n\n---\n\nFor a peek behind the curtain, what is happening is that the `link call` info is stored on the msg as `msg._linkSource` which is what Node-RED uses to return the message once it hits a `link out` node configured to \"return to calling node\".\n\nWhen messages hit Mimir Core the `msg._linkSource` property is stripped but saved in a global context object as `object[__msgid__] = msg._linkSource`, in Node-RED the message ID's are preserved until termination and can be accessed at `__msgid__` so once the message makes its way through Mimir Core, I am simply referencing that previously stored value and re-attaching it to the message before it's returned through the WebSocket. Mimir Core uses a lot of link calls so while the message is on that side it's able to pass through them unimpeded.\n\nThis is a pretty good example of when to use memoryOnly as the context store. ",
+        "x": 160,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "37c5acc9d3a844e4",
+        "type": "inject",
+        "z": "84134100670d554b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 780,
+        "wires": [
+            [
+                "da31bb8096580457"
+            ]
+        ]
+    },
+    {
+        "id": "da31bb8096580457",
+        "type": "link call",
+        "z": "84134100670d554b",
+        "name": "",
+        "links": [
+            "34ff5c41b8079126"
+        ],
+        "linkType": "static",
+        "timeout": "30",
+        "x": 310,
+        "y": 780,
+        "wires": [
+            [
+                "49038ea58227fb2a"
+            ]
+        ]
+    },
+    {
+        "id": "49038ea58227fb2a",
+        "type": "debug",
+        "z": "84134100670d554b",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 780,
+        "wires": []
+    },
+    {
         "id": "27906d69ba913f10",
         "type": "function",
         "z": "f1c27791682cd627",
@@ -737,7 +811,8 @@
         "z": "018d3d9f8b1baf1f",
         "name": "Core Out",
         "links": [
-            "edccce7940c99df0"
+            "edccce7940c99df0",
+            "3474d2c2a8be7a5e"
         ],
         "x": 75,
         "y": 160,
@@ -801,8 +876,8 @@
             "07a7ad65a01cce3e",
             "3df6b4ba4e138e27"
         ],
-        "x": 85,
-        "y": 300,
+        "x": 245,
+        "y": 320,
         "wires": [
             [
                 "4ac02535312e527f"
@@ -829,8 +904,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 190,
-        "y": 300,
+        "x": 350,
+        "y": 320,
         "wires": [
             [
                 "edccce7940c99df0"
@@ -846,8 +921,8 @@
         "links": [
             "491c7d96c6728cb5"
         ],
-        "x": 295,
-        "y": 300,
+        "x": 485,
+        "y": 380,
         "wires": []
     },
     {
@@ -856,8 +931,59 @@
         "z": "018d3d9f8b1baf1f",
         "name": "Discord Out",
         "info": "# Send message to the #playground channel in Valhalla\n\nUse a `link out` node to connect to `Discord Out`.\n\n### Send a text message\n`msg.payload = \"Hello World\"`\n\n### Send an embed \nHelpful tool: https://glitchii.github.io/embedbuilder/\n`msg.embeds = \n        {\n            \"title\": \"Hello ~~people~~ world :wave:\",\n            \"description\": \"You can use [links](https://discord.com) or emojis :smile: 😎\\n```\\nAnd also code blocks\\n```\",\n            \"color\": 4321431,\n            \"timestamp\": \"2022-11-25T03:52:05.554Z\",\n            \"url\": \"https://discord.com\",\n            \"author\": {\n                \"name\": \"Author name\",\n                \"url\": \"https://discord.com\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"thumbnail\": {\n                \"url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"image\": {\n                \"url\": \"https://glitchii.github.io/embedbuilder/assets/media/banner.png\"\n            },\n            \"footer\": {\n                \"text\": \"Footer text\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"fields\": [\n                {\n                    \"name\": \"Field 1, *lorem* **ipsum**, ~~dolor~~\",\n                    \"value\": \"Field value\"\n                },\n                {\n                    \"name\": \"Field 2\",\n                    \"value\": \"You can use custom emojis <:Kekwlaugh:722088222766923847>. <:GangstaBlob:742256196295065661>\",\n                    \"inline\": false\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"Fields can be inline\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"*Lorem ipsum*\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"value\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Another field\",\n                    \"value\": \"> Nope, didn't forget about this\",\n                    \"inline\": false\n                }\n            ]\n        }\n    `",
-        "x": 190,
-        "y": 260,
+        "x": 350,
+        "y": 280,
         "wires": []
+    },
+    {
+        "id": "96c1084e0639a3a5",
+        "type": "change",
+        "z": "018d3d9f8b1baf1f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "core",
+                "pt": "msg",
+                "to": "mcal",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 440,
+        "wires": [
+            [
+                "edccce7940c99df0"
+            ]
+        ]
+    },
+    {
+        "id": "15dc9b02fa5f03f4",
+        "type": "comment",
+        "z": "018d3d9f8b1baf1f",
+        "name": "MCAL Data",
+        "info": "Get Mcal data returned.\n\nUse a \"call link\" node to have data sent to the msg.payload of your next node.",
+        "x": 350,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "34ff5c41b8079126",
+        "type": "link in",
+        "z": "018d3d9f8b1baf1f",
+        "name": "MCAL Data",
+        "links": [],
+        "x": 245,
+        "y": 440,
+        "wires": [
+            [
+                "96c1084e0639a3a5"
+            ]
+        ]
     }
 ]
