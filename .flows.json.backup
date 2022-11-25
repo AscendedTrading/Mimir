@@ -8,20 +8,32 @@
         "env": []
     },
     {
-        "id": "018d3d9f8b1baf1f",
-        "type": "tab",
-        "label": "Mimir Core Connections",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "f1c27791682cd627",
         "type": "tab",
         "label": "Slash Command Examples",
         "disabled": false,
-        "info": "Example slash commands that can be tweaked. Copy code to a flow under your own name for any deep dev work.\n\nCommands have undergone several iterations and ports so the code is liekly sloppy af.",
+        "info": "Example slash commands that can be tweaked. Copy code to a flow under your own name for any deep dev work.\n\nCommands have undergone several iterations and ports so the code is likely sloppy af.",
         "env": []
+    },
+    {
+        "id": "018d3d9f8b1baf1f",
+        "type": "tab",
+        "label": "Mimir Core Connections",
+        "disabled": false,
+        "info": "This flow is where I'll set up the dev connectors to Mimir Core. **Don't touch this flow please.**",
+        "env": []
+    },
+    {
+        "id": "5aabc3cdee9a747f",
+        "type": "junction",
+        "z": "84134100670d554b",
+        "x": 660,
+        "y": 620,
+        "wires": [
+            [
+                "3dad1347f0e61188"
+            ]
+        ]
     },
     {
         "id": "7969f211d9887452",
@@ -110,7 +122,7 @@
         "type": "comment",
         "z": "84134100670d554b",
         "name": "Example Flow",
-        "info": "",
+        "info": "This flow injects a timestamp into the function node which then uses `node.warn(\"Hello World\")` to place a warning in the debug console (accessible in the top right of your screen with the `bug` icon). The message is then passed through that node and into the debug node which then logs the timestamp as it's configured to show msg.payload. It can also be configured to show the entire contents of the `msg` property.",
         "x": 150,
         "y": 160,
         "wires": []
@@ -120,9 +132,9 @@
         "type": "comment",
         "z": "84134100670d554b",
         "name": "Example Flow 2",
-        "info": "",
+        "info": "This flow demonstrates sending a message to discord.\n\n 1. Click the button on the inject node to inject a message (timestamp) into the next node and start the flow\n 2. The change node sets `msg.payload` to \"Hello World\", the discord function converts `msg.payload` into the \"content\" field of a discord message.\n 3. The link out node connects to the `Discord Out` connector which forwards the message to Mimir Core and to the #playground channel is Discord.",
         "x": 160,
-        "y": 280,
+        "y": 300,
         "wires": []
     },
     {
@@ -147,7 +159,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 160,
-        "y": 320,
+        "y": 340,
         "wires": [
             [
                 "205cbd7d50058ef6"
@@ -174,7 +186,7 @@
         "to": "",
         "reg": false,
         "x": 370,
-        "y": 320,
+        "y": 340,
         "wires": [
             [
                 "07a7ad65a01cce3e"
@@ -191,136 +203,60 @@
             "18e87e645a79b0eb"
         ],
         "x": 535,
-        "y": 320,
+        "y": 340,
         "wires": []
     },
     {
-        "id": "ae5cf8f5fe631665",
-        "type": "websocket in",
-        "z": "018d3d9f8b1baf1f",
-        "name": "Mimir Core WebSocket In",
-        "server": "",
-        "client": "7969f211d9887452",
-        "x": 170,
-        "y": 80,
-        "wires": [
-            [
-                "4e45b7b7877a11f0"
-            ]
-        ]
-    },
-    {
-        "id": "19072270ad5a3489",
-        "type": "link out",
-        "z": "018d3d9f8b1baf1f",
-        "name": "Core In",
-        "mode": "link",
-        "links": [],
-        "x": 365,
-        "y": 60,
+        "id": "4f3526a78ff93de4",
+        "type": "comment",
+        "z": "84134100670d554b",
+        "name": "Example Flow 3",
+        "info": "This example is broken up into four parts.\n\n**Part One (Top Left)**\nThe inject node injects messages into two nodes at the same time. Each node message is referred to as \"context\" and the change nodes put values into a \"context store\". You can view context stores on by clicking the \"down arrow\" next to the bug icon in the top right of the screen. When the change nodes are triggered they add values to two different stores:\n\n1. Flow: context in this store is only availiable on the same \"Flow\" which is what is the tabs are called. This \"Flow\" is called \"Tutorials\" so the data stored in that Flow context store is only availiable to the nodes within the \"Tutorials\" flow.\n2. Global: context in this store is availiable across the entire application.\n\n**Part Two (Top Right)**\nThe inject nodes in this section delete the variables we set in the context stores.\n\n**Part Three (Bottom Left)**\nHere we demonstrate setting context within a function node. You can also retrieve context within a function node by using `get` instead of `set`.\n\n**Part Four (Bottom Right)**\nThese inject nodes push the current value of each name variable into the debug panel.\n\n---\n\nContextStorage is currently the method Mimir uses to store *all* it's data. I'll likely be migrating to a database at some point in the future, however, thus far it has 100's of thousands of records and sees zero slowdown.\n\nContext also has two storage formats:\n\n1. File: This is the default storage method for Mimir's configuration. Context in both the Flow and Global stores is saved to disk and survives reboots, etc.\n2. Memory Only: This storage method which can be called by adding \"memoryOnly\" as a third option in `get` and `set` calls does exactly as you'd figure. The stores survive as long as Node-RED is running but are cleared upon reboot.\n\nOne more note on context is that when it's brought out of the store, it's brought out as a reference by default. Meaning if you were to do something like:\n\n`this = global.get('this')`\n`this = false`\n\n\"this\" is then updated in the context store automatically. In order to avoid this behavior you can select \"Deep copy value\" in a change node if you're accessing context from there or you can use the following helper function to make a copy of the context without the reference:\n\n`this = RED.util.cloneMessage( global.get(\"this\") )`\n`this = false`\n\nIn that scenario, \"this\" isn't updated.\n\nOne final note is that context stores can be thought of as JSON fields in a database. They can store arrays and the like.",
+        "x": 160,
+        "y": 440,
         "wires": []
     },
     {
-        "id": "1b6395fe324fb456",
-        "type": "websocket out",
-        "z": "018d3d9f8b1baf1f",
-        "name": "Mimir Core WebSocket Out",
-        "server": "",
-        "client": "fe96062b293f302d",
-        "x": 240,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "491c7d96c6728cb5",
-        "type": "link in",
-        "z": "018d3d9f8b1baf1f",
-        "name": "Core Out",
-        "links": [
-            "edccce7940c99df0"
-        ],
-        "x": 75,
-        "y": 160,
-        "wires": [
-            [
-                "1b6395fe324fb456"
-            ]
-        ]
-    },
-    {
-        "id": "4e45b7b7877a11f0",
-        "type": "switch",
-        "z": "018d3d9f8b1baf1f",
-        "name": "Link Call Check",
-        "property": "_linkSource",
-        "propertyType": "msg",
-        "rules": [
+        "id": "e193aedb5d020d3d",
+        "type": "inject",
+        "z": "84134100670d554b",
+        "name": "",
+        "props": [
             {
-                "t": "null"
+                "p": "payload"
             },
             {
-                "t": "nnull"
+                "p": "topic",
+                "vt": "str"
             }
         ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 315,
-        "y": 80,
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 480,
         "wires": [
             [
-                "19072270ad5a3489"
-            ],
-            [
-                "dea0416b9fe008fb"
+                "2229216446e016b1",
+                "80835ac417fed99f"
             ]
-        ],
-        "outputLabels": [
-            "Firehouse",
-            "Return to calling node"
-        ],
-        "l": false
+        ]
     },
     {
-        "id": "dea0416b9fe008fb",
-        "type": "link out",
-        "z": "018d3d9f8b1baf1f",
-        "name": "Core In Link Call",
-        "mode": "return",
-        "links": [],
-        "x": 365,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "18e87e645a79b0eb",
-        "type": "link in",
-        "z": "018d3d9f8b1baf1f",
-        "name": "Discord Out",
-        "links": [
-            "07a7ad65a01cce3e",
-            "3df6b4ba4e138e27"
-        ],
-        "x": 85,
-        "y": 300,
-        "wires": [
-            [
-                "4ac02535312e527f"
-            ]
-        ],
-        "info": "# Send message to the #playground channel in Valhalla\n# \n\n### Send a text message\n`msg.payload = \"Hello World\"`\n\n### Send an embed \nHelpful tool: https://glitchii.github.io/embedbuilder/\n`msg.embeds = \n        {\n            \"title\": \"Hello ~~people~~ world :wave:\",\n            \"description\": \"You can use [links](https://discord.com) or emojis :smile: 😎\\n```\\nAnd also code blocks\\n```\",\n            \"color\": 4321431,\n            \"timestamp\": \"2022-11-25T03:52:05.554Z\",\n            \"url\": \"https://discord.com\",\n            \"author\": {\n                \"name\": \"Author name\",\n                \"url\": \"https://discord.com\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"thumbnail\": {\n                \"url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"image\": {\n                \"url\": \"https://glitchii.github.io/embedbuilder/assets/media/banner.png\"\n            },\n            \"footer\": {\n                \"text\": \"Footer text\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"fields\": [\n                {\n                    \"name\": \"Field 1, *lorem* **ipsum**, ~~dolor~~\",\n                    \"value\": \"Field value\"\n                },\n                {\n                    \"name\": \"Field 2\",\n                    \"value\": \"You can use custom emojis <:Kekwlaugh:722088222766923847>. <:GangstaBlob:742256196295065661>\",\n                    \"inline\": false\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"Fields can be inline\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"*Lorem ipsum*\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"value\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Another field\",\n                    \"value\": \"> Nope, didn't forget about this\",\n                    \"inline\": false\n                }\n            ]\n        }\n    `"
-    },
-    {
-        "id": "4ac02535312e527f",
+        "id": "2229216446e016b1",
         "type": "change",
-        "z": "018d3d9f8b1baf1f",
+        "z": "84134100670d554b",
         "name": "",
         "rules": [
             {
                 "t": "set",
-                "p": "core",
-                "pt": "msg",
-                "to": "discord/out",
+                "p": "demo",
+                "pt": "flow",
+                "to": "Hello Flow",
                 "tot": "str"
             }
         ],
@@ -329,36 +265,250 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 190,
-        "y": 300,
+        "x": 340,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "80835ac417fed99f",
+        "type": "change",
+        "z": "84134100670d554b",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "demo",
+                "pt": "global",
+                "to": "Hello Global",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4c4136a9951681d0",
+        "type": "inject",
+        "z": "84134100670d554b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "demo",
+        "payloadType": "flow",
+        "x": 540,
+        "y": 580,
         "wires": [
             [
-                "edccce7940c99df0"
+                "5aabc3cdee9a747f"
             ]
         ]
     },
     {
-        "id": "edccce7940c99df0",
-        "type": "link out",
-        "z": "018d3d9f8b1baf1f",
-        "name": "Core Out Shortcut",
-        "mode": "link",
-        "links": [
-            "491c7d96c6728cb5"
-        ],
-        "x": 295,
-        "y": 300,
+        "id": "3dad1347f0e61188",
+        "type": "debug",
+        "z": "84134100670d554b",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 620,
         "wires": []
     },
     {
-        "id": "1cd0176c3668aba9",
-        "type": "comment",
-        "z": "018d3d9f8b1baf1f",
-        "name": "Discord Out",
-        "info": "# Send message to the #playground channel in Valhalla\n# \n\n### Send a text message\n`msg.payload = \"Hello World\"`\n\n### Send an embed \nHelpful tool: https://glitchii.github.io/embedbuilder/\n`msg.embeds = \n        {\n            \"title\": \"Hello ~~people~~ world :wave:\",\n            \"description\": \"You can use [links](https://discord.com) or emojis :smile: 😎\\n```\\nAnd also code blocks\\n```\",\n            \"color\": 4321431,\n            \"timestamp\": \"2022-11-25T03:52:05.554Z\",\n            \"url\": \"https://discord.com\",\n            \"author\": {\n                \"name\": \"Author name\",\n                \"url\": \"https://discord.com\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"thumbnail\": {\n                \"url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"image\": {\n                \"url\": \"https://glitchii.github.io/embedbuilder/assets/media/banner.png\"\n            },\n            \"footer\": {\n                \"text\": \"Footer text\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"fields\": [\n                {\n                    \"name\": \"Field 1, *lorem* **ipsum**, ~~dolor~~\",\n                    \"value\": \"Field value\"\n                },\n                {\n                    \"name\": \"Field 2\",\n                    \"value\": \"You can use custom emojis <:Kekwlaugh:722088222766923847>. <:GangstaBlob:742256196295065661>\",\n                    \"inline\": false\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"Fields can be inline\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"*Lorem ipsum*\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"value\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Another field\",\n                    \"value\": \"> Nope, didn't forget about this\",\n                    \"inline\": false\n                }\n            ]\n        }\n    `",
-        "x": 190,
-        "y": 260,
-        "wires": []
+        "id": "8bbd07b70ff49f08",
+        "type": "inject",
+        "z": "84134100670d554b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "demo",
+        "payloadType": "global",
+        "x": 550,
+        "y": 620,
+        "wires": [
+            [
+                "5aabc3cdee9a747f"
+            ]
+        ]
+    },
+    {
+        "id": "e86aeed7a3a3e201",
+        "type": "inject",
+        "z": "84134100670d554b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 540,
+        "y": 480,
+        "wires": [
+            [
+                "3d48c94cd42d041f",
+                "b19ad028538d3a8a"
+            ]
+        ]
+    },
+    {
+        "id": "3d48c94cd42d041f",
+        "type": "change",
+        "z": "84134100670d554b",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "demo",
+                "pt": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b19ad028538d3a8a",
+        "type": "change",
+        "z": "84134100670d554b",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "demo",
+                "pt": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "66c536f33380abde",
+        "type": "inject",
+        "z": "84134100670d554b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 580,
+        "wires": [
+            [
+                "89ed6dd1541536e3",
+                "e6cba750f728b97a"
+            ]
+        ]
+    },
+    {
+        "id": "89ed6dd1541536e3",
+        "type": "function",
+        "z": "84134100670d554b",
+        "name": "set flow.demo",
+        "func": "flow.set('demo', 'Hello Function Flow')\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e6cba750f728b97a",
+        "type": "function",
+        "z": "84134100670d554b",
+        "name": "set flow.demo",
+        "func": "global.set('demo', 'Hello Function Flow')\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 620,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "27906d69ba913f10",
@@ -540,7 +690,173 @@
         "links": [
             "18e87e645a79b0eb"
         ],
-        "x": 1275,
+        "x": 1295,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "ae5cf8f5fe631665",
+        "type": "websocket in",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Mimir Core WebSocket In",
+        "server": "",
+        "client": "7969f211d9887452",
+        "x": 170,
+        "y": 80,
+        "wires": [
+            [
+                "4e45b7b7877a11f0"
+            ]
+        ]
+    },
+    {
+        "id": "19072270ad5a3489",
+        "type": "link out",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Core In",
+        "mode": "link",
+        "links": [],
+        "x": 365,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "1b6395fe324fb456",
+        "type": "websocket out",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Mimir Core WebSocket Out",
+        "server": "",
+        "client": "fe96062b293f302d",
+        "x": 240,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "491c7d96c6728cb5",
+        "type": "link in",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Core Out",
+        "links": [
+            "edccce7940c99df0"
+        ],
+        "x": 75,
+        "y": 160,
+        "wires": [
+            [
+                "1b6395fe324fb456"
+            ]
+        ]
+    },
+    {
+        "id": "4e45b7b7877a11f0",
+        "type": "switch",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Link Call Check",
+        "property": "_linkSource",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 315,
+        "y": 80,
+        "wires": [
+            [
+                "19072270ad5a3489"
+            ],
+            [
+                "dea0416b9fe008fb"
+            ]
+        ],
+        "outputLabels": [
+            "Firehouse",
+            "Return to calling node"
+        ],
+        "l": false
+    },
+    {
+        "id": "dea0416b9fe008fb",
+        "type": "link out",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Core In Link Call",
+        "mode": "return",
+        "links": [],
+        "x": 365,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "18e87e645a79b0eb",
+        "type": "link in",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Discord Out",
+        "links": [
+            "07a7ad65a01cce3e",
+            "3df6b4ba4e138e27"
+        ],
+        "x": 85,
+        "y": 300,
+        "wires": [
+            [
+                "4ac02535312e527f"
+            ]
+        ],
+        "info": "# Send message to the #playground channel in Valhalla\n# \n\n### Send a text message\n`msg.payload = \"Hello World\"`\n\n### Send an embed \nHelpful tool: https://glitchii.github.io/embedbuilder/\n`msg.embeds = \n        {\n            \"title\": \"Hello ~~people~~ world :wave:\",\n            \"description\": \"You can use [links](https://discord.com) or emojis :smile: 😎\\n```\\nAnd also code blocks\\n```\",\n            \"color\": 4321431,\n            \"timestamp\": \"2022-11-25T03:52:05.554Z\",\n            \"url\": \"https://discord.com\",\n            \"author\": {\n                \"name\": \"Author name\",\n                \"url\": \"https://discord.com\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"thumbnail\": {\n                \"url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"image\": {\n                \"url\": \"https://glitchii.github.io/embedbuilder/assets/media/banner.png\"\n            },\n            \"footer\": {\n                \"text\": \"Footer text\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"fields\": [\n                {\n                    \"name\": \"Field 1, *lorem* **ipsum**, ~~dolor~~\",\n                    \"value\": \"Field value\"\n                },\n                {\n                    \"name\": \"Field 2\",\n                    \"value\": \"You can use custom emojis <:Kekwlaugh:722088222766923847>. <:GangstaBlob:742256196295065661>\",\n                    \"inline\": false\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"Fields can be inline\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"*Lorem ipsum*\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"value\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Another field\",\n                    \"value\": \"> Nope, didn't forget about this\",\n                    \"inline\": false\n                }\n            ]\n        }\n    `"
+    },
+    {
+        "id": "4ac02535312e527f",
+        "type": "change",
+        "z": "018d3d9f8b1baf1f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "core",
+                "pt": "msg",
+                "to": "discord/out",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 190,
+        "y": 300,
+        "wires": [
+            [
+                "edccce7940c99df0"
+            ]
+        ]
+    },
+    {
+        "id": "edccce7940c99df0",
+        "type": "link out",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Core Out Shortcut",
+        "mode": "link",
+        "links": [
+            "491c7d96c6728cb5"
+        ],
+        "x": 295,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "1cd0176c3668aba9",
+        "type": "comment",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Discord Out",
+        "info": "# Send message to the #playground channel in Valhalla\n\nUse a `link out` node to connect to `Discord Out`.\n\n### Send a text message\n`msg.payload = \"Hello World\"`\n\n### Send an embed \nHelpful tool: https://glitchii.github.io/embedbuilder/\n`msg.embeds = \n        {\n            \"title\": \"Hello ~~people~~ world :wave:\",\n            \"description\": \"You can use [links](https://discord.com) or emojis :smile: 😎\\n```\\nAnd also code blocks\\n```\",\n            \"color\": 4321431,\n            \"timestamp\": \"2022-11-25T03:52:05.554Z\",\n            \"url\": \"https://discord.com\",\n            \"author\": {\n                \"name\": \"Author name\",\n                \"url\": \"https://discord.com\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"thumbnail\": {\n                \"url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"image\": {\n                \"url\": \"https://glitchii.github.io/embedbuilder/assets/media/banner.png\"\n            },\n            \"footer\": {\n                \"text\": \"Footer text\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"fields\": [\n                {\n                    \"name\": \"Field 1, *lorem* **ipsum**, ~~dolor~~\",\n                    \"value\": \"Field value\"\n                },\n                {\n                    \"name\": \"Field 2\",\n                    \"value\": \"You can use custom emojis <:Kekwlaugh:722088222766923847>. <:GangstaBlob:742256196295065661>\",\n                    \"inline\": false\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"Fields can be inline\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"*Lorem ipsum*\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"value\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Another field\",\n                    \"value\": \"> Nope, didn't forget about this\",\n                    \"inline\": false\n                }\n            ]\n        }\n    `",
+        "x": 190,
         "y": 260,
         "wires": []
     }
