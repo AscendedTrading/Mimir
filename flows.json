@@ -602,7 +602,7 @@
             }
         ],
         "x": 1020,
-        "y": 260,
+        "y": 140,
         "wires": [
             [
                 "3df6b4ba4e138e27"
@@ -621,7 +621,7 @@
         "finalize": "",
         "libs": [],
         "x": 290,
-        "y": 260,
+        "y": 140,
         "wires": [
             [
                 "42cba602d3bac2f0"
@@ -652,7 +652,7 @@
             }
         ],
         "x": 480,
-        "y": 260,
+        "y": 140,
         "wires": [
             [
                 "7b256abe5472915f"
@@ -670,7 +670,7 @@
         "ret": "html",
         "as": "single",
         "x": 650,
-        "y": 260,
+        "y": 140,
         "wires": [
             [
                 "cbb32f226e06b0b3"
@@ -694,7 +694,7 @@
             }
         ],
         "x": 810,
-        "y": 260,
+        "y": 140,
         "wires": [
             [
                 "27906d69ba913f10"
@@ -708,7 +708,7 @@
         "name": "Fed Rate",
         "info": "",
         "x": 260,
-        "y": 220,
+        "y": 100,
         "wires": []
     },
     {
@@ -733,7 +733,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 130,
-        "y": 240,
+        "y": 120,
         "wires": [
             [
                 "6d835c98a7d933c5"
@@ -758,7 +758,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 280,
+        "y": 160,
         "wires": [
             [
                 "6d835c98a7d933c5"
@@ -776,7 +776,7 @@
             "629b2f47e063001c"
         ],
         "x": 1175,
-        "y": 260,
+        "y": 140,
         "wires": []
     },
     {
@@ -791,7 +791,7 @@
         "template": "<style>\n  body {\n  background-color: #2f3136 !important,\n  }\n  </style>\n<body>\n<div style=\"background-color: #2f3136\" height=\"{{height}}\" width=\"300px\">\n  <canvas id=\"myChart\"></canvas>\n</div>\n</body>\n<script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>\n<script src=\"https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2\"></script>\n\n<script>\n  const ctx = document.getElementById('myChart');\n\n  new Chart(ctx, {\n    type: 'bar',\n    data: {\n      labels: [\n        {{#poll.options}}\n        '{{label}}',\n        {{/poll.options}}\n      ],\n      datasets: [{\n         barPercentage: .8,\n    categoryPercentage: .8,\n        //label: '# of Votes',\n        data: [\n          {{#poll.options}}\n          {{count}},\n          {{/poll.options}}\n        ],\n         backgroundColor: [\n      {{#colors}}\n        '{{.}}',\n      {{/colors}}\n    ],\n        borderWidth: 1\n      }]\n    },\n    plugins: [ChartDataLabels],\n    options: {\n         responsive: true,\n    maintainAspectRatio: false,\n    animation: false,\n    animations: { colors: false, x: false },\n    transitions: { active: {animation: {duration: 0}}},\n    plugins: {\n\n      legend: {\n      display: false\n    },\n      // Change options for ALL labels of THIS CHART\n      datalabels: {\n        color: '#fff',\n        anchor: \"end\",\n        align: \"end\",\n        offset: 15\n      }\n    },\n      indexAxis: 'y',\n      scales: {\n      y: {\n        grid: {\n      display: false\n    },\n         color: \"#fff\",\n         ticks: {\n            color: \"#fff\"\n         }\n      },\n        x: {\n          grid: {\n      display: false\n    },\n        display: false,\n        grace: 1,\n          beginAtZero: true,\n          ticks: {\n            precision: 0,\n            color: \"#fff\",\n          },\n          color: \"#fff\"\n        }\n      }\n    }\n  });\n</script>",
         "output": "str",
         "x": 570,
-        "y": 720,
+        "y": 600,
         "wires": [
             [
                 "fd79bf6f0c8841f8"
@@ -808,7 +808,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 270,
-        "y": 720,
+        "y": 600,
         "wires": [
             [
                 "f4e8217ddb6b0744"
@@ -823,7 +823,7 @@
         "statusCode": "200",
         "headers": {},
         "x": 900,
-        "y": 720,
+        "y": 600,
         "wires": []
     },
     {
@@ -838,7 +838,7 @@
         "finalize": "",
         "libs": [],
         "x": 420,
-        "y": 720,
+        "y": 600,
         "wires": [
             [
                 "e74d700b075e28df"
@@ -857,7 +857,7 @@
         "finalize": "",
         "libs": [],
         "x": 740,
-        "y": 720,
+        "y": 600,
         "wires": [
             [
                 "f68e6bae010a94ac"
@@ -871,7 +871,7 @@
         "name": "Polls Command Handler",
         "info": "",
         "x": 310,
-        "y": 400,
+        "y": 280,
         "wires": []
     },
     {
@@ -881,7 +881,7 @@
         "name": "Polls Chart Rendering Endpoint (https://dev.ascendedtrading.com/pollChart/:id)",
         "info": "",
         "x": 470,
-        "y": 680,
+        "y": 560,
         "wires": []
     },
     {
@@ -889,7 +889,7 @@
         "type": "function",
         "z": "f1c27791682cd627",
         "name": "Poll Builder",
-        "func": "polls = flow.get('polls')\n\nif(!polls) {\n    flow.set('polls', [])\n}\n\nCOLORS = {\n    green: 3,\n    red: 4,\n    blue: 1,\n    grey: 2\n}\n\ntimestamp = moment(new Date()).utc().valueOf()\n\npoll = {\n    id: timestamp,\n    type: msg.subcommand,\n    automated: true,\n    label: msg.payload,\n    userIds: [],\n    options: []\n}\n\nmsg.components = [{\n    type: 1,\n    components: []\n}]\n\nmsg.options.forEach(option =>{\n\n    custom_id = \"dev_\" + timestamp + \"_\" + option.label.replace(/[^a-z0-9]/gi, '').slice(0, 10)\n\n    msg.components[0].components.push({\n        type: 2,\n        label: option.label,\n        style: option.color ? COLORS[option.color] : COLORS[\"grey\"],\n        custom_id: custom_id\n    })\n\n    poll.options.push({\n        type: msg.subcommand,\n        count: 0,\n        label: option.label,\n        custom_id: custom_id\n    })\n})\n\npolls.push(poll)\n\nmsg.id = timestamp\nmsg.label = msg.payload\nmsg.selector = \"#myChart\"\nmsg.filename = \"poll\"\nmsg.url = `http://dev.ascendedtrading.com/pollChart/${timestamp}`\n\nreturn msg;",
+        "func": "polls = flow.get('polls')\n\nif(!polls) {\n    flow.set('polls', [])\n    polls = flow.get('polls')\n}\n\nCOLORS = {\n    green: 3,\n    red: 4,\n    blue: 1,\n    grey: 2\n}\n\ntimestamp = moment(new Date()).utc().valueOf()\n\npoll = {\n    id: timestamp,\n    type: msg.subcommand,\n    automated: true,\n    label: msg.payload,\n    userIds: [],\n    options: []\n}\n\nmsg.components = [{\n    type: 1,\n    components: []\n}]\n\nmsg.options.forEach(option =>{\n\n    custom_id = \"dev_\" + timestamp + \"_\" + option.label.replace(/[^a-z0-9]/gi, '').slice(0, 10)\n\n    msg.components[0].components.push({\n        type: 2,\n        label: option.label,\n        style: option.color ? COLORS[option.color] : COLORS[\"grey\"],\n        custom_id: custom_id\n    })\n\n    poll.options.push({\n        type: msg.subcommand,\n        count: 0,\n        label: option.label,\n        custom_id: custom_id\n    })\n})\n\npolls.push(poll)\n\nmsg.id = timestamp\nmsg.label = msg.payload\nmsg.selector = \"#myChart\"\nmsg.filename = \"poll\"\nmsg.url = `http://dev.ascendedtrading.com/pollChart/${timestamp}`\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -901,7 +901,7 @@
             }
         ],
         "x": 1150,
-        "y": 480,
+        "y": 360,
         "wires": [
             [
                 "e927da87be2dd402"
@@ -920,7 +920,7 @@
         "finalize": "",
         "libs": [],
         "x": 1540,
-        "y": 540,
+        "y": 420,
         "wires": [
             [
                 "c7d5bae103d6acde"
@@ -938,7 +938,7 @@
         "linkType": "static",
         "timeout": "30",
         "x": 1340,
-        "y": 540,
+        "y": 420,
         "wires": [
             [
                 "70c1f11841f41a4c"
@@ -955,7 +955,7 @@
             "18e87e645a79b0eb"
         ],
         "x": 1675,
-        "y": 540,
+        "y": 420,
         "wires": []
     },
     {
@@ -970,7 +970,7 @@
         "finalize": "",
         "libs": [],
         "x": 1120,
-        "y": 600,
+        "y": 480,
         "wires": [
             [
                 "e927da87be2dd402"
@@ -995,7 +995,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 930,
-        "y": 600,
+        "y": 480,
         "wires": [
             [
                 "f96983d77c0d54cd"
@@ -1014,7 +1014,7 @@
         "finalize": "",
         "libs": [],
         "x": 760,
-        "y": 600,
+        "y": 480,
         "wires": [
             [
                 "2e5385956f09fc65"
@@ -1039,7 +1039,7 @@
         "repair": false,
         "outputs": 1,
         "x": 490,
-        "y": 480,
+        "y": 360,
         "wires": [
             [
                 "63c48994a07d1c16"
@@ -1066,7 +1066,7 @@
         "to": "",
         "reg": false,
         "x": 660,
-        "y": 480,
+        "y": 360,
         "wires": [
             [
                 "23aee976ac3901fd"
@@ -1101,7 +1101,7 @@
         "repair": false,
         "outputs": 3,
         "x": 830,
-        "y": 480,
+        "y": 360,
         "wires": [
             [
                 "77cc0db87e2b8b92"
@@ -1126,7 +1126,7 @@
         "finalize": "",
         "libs": [],
         "x": 970,
-        "y": 440,
+        "y": 320,
         "wires": [
             [
                 "b7d7b6a99797f04e"
@@ -1145,7 +1145,7 @@
         "finalize": "",
         "libs": [],
         "x": 970,
-        "y": 480,
+        "y": 360,
         "wires": [
             [
                 "b7d7b6a99797f04e"
@@ -1164,7 +1164,7 @@
         "finalize": "",
         "libs": [],
         "x": 980,
-        "y": 520,
+        "y": 400,
         "wires": [
             [
                 "b7d7b6a99797f04e"
@@ -1180,7 +1180,7 @@
             "19072270ad5a3489"
         ],
         "x": 515,
-        "y": 600,
+        "y": 480,
         "wires": [
             [
                 "3359a2710a791fb3"
@@ -1205,7 +1205,7 @@
         "repair": false,
         "outputs": 1,
         "x": 600,
-        "y": 600,
+        "y": 480,
         "wires": [
             [
                 "898ae628b4296992"
@@ -1219,7 +1219,7 @@
         "name": "Vote Handler",
         "info": "",
         "x": 570,
-        "y": 560,
+        "y": 440,
         "wires": []
     },
     {
@@ -1227,14 +1227,14 @@
         "type": "function",
         "z": "f1c27791682cd627",
         "name": "Test Data",
-        "func": "msg = {\n   \"type\":\"APPLICATION_COMMAND\",\n   \"id\":\"1046181133542498384\",\n   \"user\":{\n      \"id\":\"768562231964860426\",\n      \"bot\":false,\n      \"system\":false,\n      \"flags\":0,\n      \"username\":\"Conqueror\",\n      \"discriminator\":\"6969\",\n      \"avatar\":\"dacf6c92a453cbec508c7c7bc5150f58\",\n      \"banner\":\"0ecef034f56285a73efd5720d167aac9\",\n      \"accentColor\":null,\n      \"createdTimestamp\":1603309915296,\n      \"defaultAvatarURL\":\"https://cdn.discordapp.com/embed/avatars/4.png\",\n      \"hexAccentColor\":null,\n      \"tag\":\"Conqueror#6969\",\n      \"avatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"displayAvatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"bannerURL\":\"https://cdn.discordapp.com/banners/768562231964860426/0ecef034f56285a73efd5720d167aac9.webp\"\n   },\n   \"version\":1,\n   \"appPermissions\":\"1072772402753\",\n   \"memberPermissions\":\"4398046511103\",\n   \"locale\":\"en-US\",\n   \"guildLocale\":\"en-US\",\n   \"commandId\":\"1045957132975079489\",\n   \"commandName\":\"poll\",\n   \"deferred\":true,\n   \"replied\":false,\n   \"ephemeral\":false,\n   \"options\":{\n      \"_group\":null,\n      \"_subcommand\":\"profitability\",\n      \"_hoistedOptions\":[\n         {\n            \"name\":\"play\",\n            \"type\":\"STRING\",\n            \"value\":\"Example\"\n         }\n      ]\n   },\n   \"replyMessage\":{\n      \"channelId\":\"1045767424575819886\",\n      \"guildId\":\"994590548520345710\",\n      \"id\":\"1046181134272311357\",\n      \"createdTimestamp\":1669499419516,\n      \"type\":\"APPLICATION_COMMAND\",\n      \"system\":false,\n      \"content\":\"\",\n      \"authorId\":\"903343207323148349\",\n      \"pinned\":false,\n      \"tts\":false,\n      \"embeds\":[\n         \n      ],\n      \"components\":[\n         \n      ],\n      \"attachments\":[\n         \n      ],\n      \"stickers\":[\n         \n      ],\n      \"editedTimestamp\":null,\n      \"activity\":null,\n      \"flags\":128,\n      \"reference\":null,\n      \"cleanContent\":\"\"\n   }\n}\n\nreturn msg;",
+        "func": "msg.payload = {\n   \"type\":\"APPLICATION_COMMAND\",\n   \"id\":\"1046181133542498384\",\n   \"user\":{\n      \"id\":\"768562231964860426\",\n      \"bot\":false,\n      \"system\":false,\n      \"flags\":0,\n      \"username\":\"Conqueror\",\n      \"discriminator\":\"6969\",\n      \"avatar\":\"dacf6c92a453cbec508c7c7bc5150f58\",\n      \"banner\":\"0ecef034f56285a73efd5720d167aac9\",\n      \"accentColor\":null,\n      \"createdTimestamp\":1603309915296,\n      \"defaultAvatarURL\":\"https://cdn.discordapp.com/embed/avatars/4.png\",\n      \"hexAccentColor\":null,\n      \"tag\":\"Conqueror#6969\",\n      \"avatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"displayAvatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"bannerURL\":\"https://cdn.discordapp.com/banners/768562231964860426/0ecef034f56285a73efd5720d167aac9.webp\"\n   },\n   \"version\":1,\n   \"appPermissions\":\"1072772402753\",\n   \"memberPermissions\":\"4398046511103\",\n   \"locale\":\"en-US\",\n   \"guildLocale\":\"en-US\",\n   \"commandId\":\"1045957132975079489\",\n   \"commandName\":\"poll\",\n   \"deferred\":true,\n   \"replied\":false,\n   \"ephemeral\":false,\n   \"options\":{\n      \"_group\":null,\n      \"_subcommand\":\"profitability\",\n      \"_hoistedOptions\":[\n         {\n            \"name\":\"play\",\n            \"type\":\"STRING\",\n            \"value\":\"Example\"\n         }\n      ]\n   },\n   \"replyMessage\":{\n      \"channelId\":\"1045767424575819886\",\n      \"guildId\":\"994590548520345710\",\n      \"id\":\"1046181134272311357\",\n      \"createdTimestamp\":1669499419516,\n      \"type\":\"APPLICATION_COMMAND\",\n      \"system\":false,\n      \"content\":\"\",\n      \"authorId\":\"903343207323148349\",\n      \"pinned\":false,\n      \"tts\":false,\n      \"embeds\":[\n         \n      ],\n      \"components\":[\n         \n      ],\n      \"attachments\":[\n         \n      ],\n      \"stickers\":[\n         \n      ],\n      \"editedTimestamp\":null,\n      \"activity\":null,\n      \"flags\":128,\n      \"reference\":null,\n      \"cleanContent\":\"\"\n   }\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 480,
+        "y": 360,
         "wires": [
             [
                 "67f8681ae8997d4c"
@@ -1263,7 +1263,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 180,
-        "y": 480,
+        "y": 360,
         "wires": [
             [
                 "3f16b7e976903c94"
@@ -1275,14 +1275,14 @@
         "type": "function",
         "z": "f1c27791682cd627",
         "name": "Test Data",
-        "func": "msg = {\n   \"type\":\"APPLICATION_COMMAND\",\n   \"id\":\"1046181133542498384\",\n   \"user\":{\n      \"id\":\"768562231964860426\",\n      \"bot\":false,\n      \"system\":false,\n      \"flags\":0,\n      \"username\":\"Conqueror\",\n      \"discriminator\":\"6969\",\n      \"avatar\":\"dacf6c92a453cbec508c7c7bc5150f58\",\n      \"banner\":\"0ecef034f56285a73efd5720d167aac9\",\n      \"accentColor\":null,\n      \"createdTimestamp\":1603309915296,\n      \"defaultAvatarURL\":\"https://cdn.discordapp.com/embed/avatars/4.png\",\n      \"hexAccentColor\":null,\n      \"tag\":\"Conqueror#6969\",\n      \"avatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"displayAvatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"bannerURL\":\"https://cdn.discordapp.com/banners/768562231964860426/0ecef034f56285a73efd5720d167aac9.webp\"\n   },\n   \"version\":1,\n   \"appPermissions\":\"1072772402753\",\n   \"memberPermissions\":\"4398046511103\",\n   \"locale\":\"en-US\",\n   \"guildLocale\":\"en-US\",\n   \"commandId\":\"1045957132975079489\",\n   \"commandName\":\"poll\",\n   \"deferred\":true,\n   \"replied\":false,\n   \"ephemeral\":false,\n   \"options\":{\n      \"_group\": null,\n      \"_subcommand\": \"yes_or_no\",\n      \"_hoistedOptions\": [\n         {\n            \"name\": \"question\",\n            \"type\": \"STRING\",\n            \"value\": \"Example\"\n         }\n      ]\n   },\n   \"replyMessage\":{\n      \"channelId\":\"1045767424575819886\",\n      \"guildId\":\"994590548520345710\",\n      \"id\":\"1046181134272311357\",\n      \"createdTimestamp\":1669499419516,\n      \"type\":\"APPLICATION_COMMAND\",\n      \"system\":false,\n      \"content\":\"\",\n      \"authorId\":\"903343207323148349\",\n      \"pinned\":false,\n      \"tts\":false,\n      \"embeds\":[\n         \n      ],\n      \"components\":[\n         \n      ],\n      \"attachments\":[\n         \n      ],\n      \"stickers\":[\n         \n      ],\n      \"editedTimestamp\":null,\n      \"activity\":null,\n      \"flags\":128,\n      \"reference\":null,\n      \"cleanContent\":\"\"\n   }\n}\n\nreturn msg;",
+        "func": "msg.payload = {\n   \"type\":\"APPLICATION_COMMAND\",\n   \"id\":\"1046181133542498384\",\n   \"user\":{\n      \"id\":\"768562231964860426\",\n      \"bot\":false,\n      \"system\":false,\n      \"flags\":0,\n      \"username\":\"Conqueror\",\n      \"discriminator\":\"6969\",\n      \"avatar\":\"dacf6c92a453cbec508c7c7bc5150f58\",\n      \"banner\":\"0ecef034f56285a73efd5720d167aac9\",\n      \"accentColor\":null,\n      \"createdTimestamp\":1603309915296,\n      \"defaultAvatarURL\":\"https://cdn.discordapp.com/embed/avatars/4.png\",\n      \"hexAccentColor\":null,\n      \"tag\":\"Conqueror#6969\",\n      \"avatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"displayAvatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"bannerURL\":\"https://cdn.discordapp.com/banners/768562231964860426/0ecef034f56285a73efd5720d167aac9.webp\"\n   },\n   \"version\":1,\n   \"appPermissions\":\"1072772402753\",\n   \"memberPermissions\":\"4398046511103\",\n   \"locale\":\"en-US\",\n   \"guildLocale\":\"en-US\",\n   \"commandId\":\"1045957132975079489\",\n   \"commandName\":\"poll\",\n   \"deferred\":true,\n   \"replied\":false,\n   \"ephemeral\":false,\n   \"options\":{\n      \"_group\": null,\n      \"_subcommand\": \"yes_or_no\",\n      \"_hoistedOptions\": [\n         {\n            \"name\": \"question\",\n            \"type\": \"STRING\",\n            \"value\": \"Example\"\n         }\n      ]\n   },\n   \"replyMessage\":{\n      \"channelId\":\"1045767424575819886\",\n      \"guildId\":\"994590548520345710\",\n      \"id\":\"1046181134272311357\",\n      \"createdTimestamp\":1669499419516,\n      \"type\":\"APPLICATION_COMMAND\",\n      \"system\":false,\n      \"content\":\"\",\n      \"authorId\":\"903343207323148349\",\n      \"pinned\":false,\n      \"tts\":false,\n      \"embeds\":[\n         \n      ],\n      \"components\":[\n         \n      ],\n      \"attachments\":[\n         \n      ],\n      \"stickers\":[\n         \n      ],\n      \"editedTimestamp\":null,\n      \"activity\":null,\n      \"flags\":128,\n      \"reference\":null,\n      \"cleanContent\":\"\"\n   }\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 440,
+        "y": 320,
         "wires": [
             [
                 "67f8681ae8997d4c"
@@ -1311,7 +1311,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 180,
-        "y": 440,
+        "y": 320,
         "wires": [
             [
                 "40e7a2896685adbc"
@@ -1323,14 +1323,14 @@
         "type": "function",
         "z": "f1c27791682cd627",
         "name": "Test Data",
-        "func": "msg = {\n   \"type\":\"APPLICATION_COMMAND\",\n   \"id\":\"1046181133542498384\",\n   \"user\":{\n      \"id\":\"768562231964860426\",\n      \"bot\":false,\n      \"system\":false,\n      \"flags\":0,\n      \"username\":\"Conqueror\",\n      \"discriminator\":\"6969\",\n      \"avatar\":\"dacf6c92a453cbec508c7c7bc5150f58\",\n      \"banner\":\"0ecef034f56285a73efd5720d167aac9\",\n      \"accentColor\":null,\n      \"createdTimestamp\":1603309915296,\n      \"defaultAvatarURL\":\"https://cdn.discordapp.com/embed/avatars/4.png\",\n      \"hexAccentColor\":null,\n      \"tag\":\"Conqueror#6969\",\n      \"avatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"displayAvatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"bannerURL\":\"https://cdn.discordapp.com/banners/768562231964860426/0ecef034f56285a73efd5720d167aac9.webp\"\n   },\n   \"version\":1,\n   \"appPermissions\":\"1072772402753\",\n   \"memberPermissions\":\"4398046511103\",\n   \"locale\":\"en-US\",\n   \"guildLocale\":\"en-US\",\n   \"commandId\":\"1045957132975079489\",\n   \"commandName\":\"poll\",\n   \"deferred\":true,\n   \"replied\":false,\n   \"ephemeral\":false,\n   \"options\":{\n      \"_group\": null,\n      \"_subcommand\": \"multiple_choice\",\n      \"_hoistedOptions\": [\n         {\n            \"name\": \"question\",\n            \"type\": \"STRING\",\n            \"value\": \"Example\"\n         },\n         {\n            \"name\": \"option_one\",\n            \"type\": \"STRING\",\n            \"value\": \"One\"\n         },\n         {\n            \"name\": \"option_two\",\n            \"type\": \"STRING\",\n            \"value\": \"Two\"\n         },\n         {\n            \"name\": \"option_three\",\n            \"type\": \"STRING\",\n            \"value\": \"Three\"\n         },\n         {\n            \"name\": \"option_four\",\n            \"type\": \"STRING\",\n            \"value\": \"Four\"\n         },\n         {\n            \"name\": \"option_five\",\n            \"type\": \"STRING\",\n            \"value\": \"Five\"\n         }\n      ]\n   },\n   \"replyMessage\":{\n      \"channelId\":\"1045767424575819886\",\n      \"guildId\":\"994590548520345710\",\n      \"id\":\"1046181134272311357\",\n      \"createdTimestamp\":1669499419516,\n      \"type\":\"APPLICATION_COMMAND\",\n      \"system\":false,\n      \"content\":\"\",\n      \"authorId\":\"903343207323148349\",\n      \"pinned\":false,\n      \"tts\":false,\n      \"embeds\":[\n         \n      ],\n      \"components\":[\n         \n      ],\n      \"attachments\":[\n         \n      ],\n      \"stickers\":[\n         \n      ],\n      \"editedTimestamp\":null,\n      \"activity\":null,\n      \"flags\":128,\n      \"reference\":null,\n      \"cleanContent\":\"\"\n   }\n}\n\nreturn msg;",
+        "func": "msg.payload = {\n   \"type\":\"APPLICATION_COMMAND\",\n   \"id\":\"1046181133542498384\",\n   \"user\":{\n      \"id\":\"768562231964860426\",\n      \"bot\":false,\n      \"system\":false,\n      \"flags\":0,\n      \"username\":\"Conqueror\",\n      \"discriminator\":\"6969\",\n      \"avatar\":\"dacf6c92a453cbec508c7c7bc5150f58\",\n      \"banner\":\"0ecef034f56285a73efd5720d167aac9\",\n      \"accentColor\":null,\n      \"createdTimestamp\":1603309915296,\n      \"defaultAvatarURL\":\"https://cdn.discordapp.com/embed/avatars/4.png\",\n      \"hexAccentColor\":null,\n      \"tag\":\"Conqueror#6969\",\n      \"avatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"displayAvatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"bannerURL\":\"https://cdn.discordapp.com/banners/768562231964860426/0ecef034f56285a73efd5720d167aac9.webp\"\n   },\n   \"version\":1,\n   \"appPermissions\":\"1072772402753\",\n   \"memberPermissions\":\"4398046511103\",\n   \"locale\":\"en-US\",\n   \"guildLocale\":\"en-US\",\n   \"commandId\":\"1045957132975079489\",\n   \"commandName\":\"poll\",\n   \"deferred\":true,\n   \"replied\":false,\n   \"ephemeral\":false,\n   \"options\":{\n      \"_group\": null,\n      \"_subcommand\": \"multiple_choice\",\n      \"_hoistedOptions\": [\n         {\n            \"name\": \"question\",\n            \"type\": \"STRING\",\n            \"value\": \"Example\"\n         },\n         {\n            \"name\": \"option_one\",\n            \"type\": \"STRING\",\n            \"value\": \"One\"\n         },\n         {\n            \"name\": \"option_two\",\n            \"type\": \"STRING\",\n            \"value\": \"Two\"\n         },\n         {\n            \"name\": \"option_three\",\n            \"type\": \"STRING\",\n            \"value\": \"Three\"\n         },\n         {\n            \"name\": \"option_four\",\n            \"type\": \"STRING\",\n            \"value\": \"Four\"\n         },\n         {\n            \"name\": \"option_five\",\n            \"type\": \"STRING\",\n            \"value\": \"Five\"\n         }\n      ]\n   },\n   \"replyMessage\":{\n      \"channelId\":\"1045767424575819886\",\n      \"guildId\":\"994590548520345710\",\n      \"id\":\"1046181134272311357\",\n      \"createdTimestamp\":1669499419516,\n      \"type\":\"APPLICATION_COMMAND\",\n      \"system\":false,\n      \"content\":\"\",\n      \"authorId\":\"903343207323148349\",\n      \"pinned\":false,\n      \"tts\":false,\n      \"embeds\":[\n         \n      ],\n      \"components\":[\n         \n      ],\n      \"attachments\":[\n         \n      ],\n      \"stickers\":[\n         \n      ],\n      \"editedTimestamp\":null,\n      \"activity\":null,\n      \"flags\":128,\n      \"reference\":null,\n      \"cleanContent\":\"\"\n   }\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 520,
+        "y": 400,
         "wires": [
             [
                 "67f8681ae8997d4c"
@@ -1359,12 +1359,22 @@
         "payload": "",
         "payloadType": "date",
         "x": 170,
-        "y": 520,
+        "y": 400,
         "wires": [
             [
                 "2a39995f04207c2a"
             ]
         ]
+    },
+    {
+        "id": "65976a82bb2ab639",
+        "type": "comment",
+        "z": "f1c27791682cd627",
+        "name": "Connector is Currently Broken",
+        "info": "",
+        "x": 1380,
+        "y": 380,
+        "wires": []
     },
     {
         "id": "ae5cf8f5fe631665",
