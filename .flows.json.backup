@@ -600,7 +600,7 @@
                 "module": "ascii-table3"
             }
         ],
-        "x": 1120,
+        "x": 1020,
         "y": 260,
         "wires": [
             [
@@ -612,14 +612,14 @@
         "id": "6d835c98a7d933c5",
         "type": "function",
         "z": "f1c27791682cd627",
-        "name": "Add User Agent / Parse Command",
-        "func": "msg.headers = {};\nmsg.headers['USER-AGENT'] = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36';\n\n// if(msg.interactionObject.options.getString('date'))\n// {\n//     msg.subcommand = msg.interactionObject.options.getString('date')\n    \n// } else {\n//     msg.subcommand = \"default\"\n// }\n\n\nif(msg.date) {\n    msg.subcommand = msg.date\n} else {\n    msg.subcommand = \"default\"\n}\n\n\n\nreturn msg;\n\n",
+        "name": "Parse Command",
+        "func": "if(msg.date) {\n    msg.subcommand = msg.date\n} else {\n    msg.subcommand = \"default\"\n}\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
+        "x": 290,
         "y": 260,
         "wires": [
             [
@@ -639,9 +639,18 @@
         "tls": "",
         "persist": true,
         "proxy": "",
+        "insecureHTTPParser": false,
         "authType": "",
         "senderr": false,
-        "x": 580,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "USER-AGENT",
+                "valueType": "other",
+                "valueValue": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
+            }
+        ],
+        "x": 480,
         "y": 260,
         "wires": [
             [
@@ -659,7 +668,7 @@
         "tag": "div.cardWrapper",
         "ret": "html",
         "as": "single",
-        "x": 750,
+        "x": 650,
         "y": 260,
         "wires": [
             [
@@ -683,7 +692,7 @@
                 "module": "jssoup"
             }
         ],
-        "x": 910,
+        "x": 810,
         "y": 260,
         "wires": [
             [
@@ -722,7 +731,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 110,
+        "x": 130,
         "y": 240,
         "wires": [
             [
@@ -747,7 +756,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 110,
+        "x": 130,
         "y": 280,
         "wires": [
             [
@@ -764,7 +773,7 @@
         "links": [
             "18e87e645a79b0eb"
         ],
-        "x": 1295,
+        "x": 1175,
         "y": 260,
         "wires": []
     },

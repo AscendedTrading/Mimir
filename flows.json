@@ -200,7 +200,8 @@
         "name": "Discord Out Shortcut",
         "mode": "link",
         "links": [
-            "18e87e645a79b0eb"
+            "18e87e645a79b0eb",
+            "629b2f47e063001c"
         ],
         "x": 535,
         "y": 340,
@@ -731,7 +732,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 110,
+        "x": 130,
         "y": 240,
         "wires": [
             [
@@ -756,7 +757,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 110,
+        "x": 130,
         "y": 280,
         "wires": [
             [
@@ -771,11 +772,599 @@
         "name": "Discord Out Shortcut",
         "mode": "link",
         "links": [
-            "18e87e645a79b0eb"
+            "18e87e645a79b0eb",
+            "629b2f47e063001c"
         ],
-        "x": 1195,
+        "x": 1175,
         "y": 260,
         "wires": []
+    },
+    {
+        "id": "e74d700b075e28df",
+        "type": "template",
+        "z": "f1c27791682cd627",
+        "name": "Chart HTML",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<style>\n  body {\n  background-color: #2f3136 !important,\n  }\n  </style>\n<body>\n<div style=\"background-color: #2f3136\" height=\"{{height}}\" width=\"300px\">\n  <canvas id=\"myChart\"></canvas>\n</div>\n</body>\n<script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>\n<script src=\"https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2\"></script>\n\n<script>\n  const ctx = document.getElementById('myChart');\n\n  new Chart(ctx, {\n    type: 'bar',\n    data: {\n      labels: [\n        {{#poll.options}}\n        '{{label}}',\n        {{/poll.options}}\n      ],\n      datasets: [{\n         barPercentage: .8,\n    categoryPercentage: .8,\n        //label: '# of Votes',\n        data: [\n          {{#poll.options}}\n          {{count}},\n          {{/poll.options}}\n        ],\n         backgroundColor: [\n      {{#colors}}\n        '{{.}}',\n      {{/colors}}\n    ],\n        borderWidth: 1\n      }]\n    },\n    plugins: [ChartDataLabels],\n    options: {\n         responsive: true,\n    maintainAspectRatio: false,\n    animation: false,\n    animations: { colors: false, x: false },\n    transitions: { active: {animation: {duration: 0}}},\n    plugins: {\n\n      legend: {\n      display: false\n    },\n      // Change options for ALL labels of THIS CHART\n      datalabels: {\n        color: '#fff',\n        anchor: \"end\",\n        align: \"end\",\n        offset: 15\n      }\n    },\n      indexAxis: 'y',\n      scales: {\n      y: {\n        grid: {\n      display: false\n    },\n         color: \"#fff\",\n         ticks: {\n            color: \"#fff\"\n         }\n      },\n        x: {\n          grid: {\n      display: false\n    },\n        display: false,\n        grace: 1,\n          beginAtZero: true,\n          ticks: {\n            precision: 0,\n            color: \"#fff\",\n          },\n          color: \"#fff\"\n        }\n      }\n    }\n  });\n</script>",
+        "output": "str",
+        "x": 570,
+        "y": 720,
+        "wires": [
+            [
+                "fd79bf6f0c8841f8"
+            ]
+        ]
+    },
+    {
+        "id": "5a521abdfb080630",
+        "type": "http in",
+        "z": "f1c27791682cd627",
+        "name": "Poll Endpoint",
+        "url": "/pollChart/:id",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 720,
+        "wires": [
+            [
+                "f4e8217ddb6b0744"
+            ]
+        ]
+    },
+    {
+        "id": "f68e6bae010a94ac",
+        "type": "http response",
+        "z": "f1c27791682cd627",
+        "name": "Render",
+        "statusCode": "200",
+        "headers": {},
+        "x": 900,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "f4e8217ddb6b0744",
+        "type": "function",
+        "z": "f1c27791682cd627",
+        "name": "Get Poll",
+        "func": "polls = flow.get('polls')\n\nCOLORS = {\n    multiple_choice: [\n        '#F1A600',\n        '#F3BC00',\n        '#F5D300',\n        '#F7E900',\n        '#F9FF00'\n    ],\n    yes_or_no: [\n        '#3aa35b',\n        '#fe4648',\n    ],\n    profitability: [\n        '#3aa35b',\n        '#fe4648',\n        '#6f7682'\n    ]\n}\n\nid = parseInt(msg.req.params.id)\n\npolls.forEach(poll =>{\n    if(parseInt(poll.id) === id) {\n        if(poll.type) {\n            msg.colors = COLORS[poll.type]\n        } else {\n            msg.colors = poll.options.length === 2 ? COLORS[\"yes_or_no\"]\n                : poll.options.length === 3 ? COLORS[\"profitability\"]\n                : COLORS[\"multiple_choice\"]\n        }\n        msg.poll = poll\n    }\n})\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 720,
+        "wires": [
+            [
+                "e74d700b075e28df"
+            ]
+        ]
+    },
+    {
+        "id": "fd79bf6f0c8841f8",
+        "type": "function",
+        "z": "f1c27791682cd627",
+        "name": "Apostrophe Fix",
+        "func": "msg.payload = msg.payload.replace(\"&#39;\", \"\\\\'\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 720,
+        "wires": [
+            [
+                "f68e6bae010a94ac"
+            ]
+        ]
+    },
+    {
+        "id": "f11f52296125c659",
+        "type": "comment",
+        "z": "f1c27791682cd627",
+        "name": "Polls Command Handler",
+        "info": "",
+        "x": 310,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "d64b58feca19e354",
+        "type": "comment",
+        "z": "f1c27791682cd627",
+        "name": "Polls Chart Rendering Endpoint (https://dev.ascendedtrading.com/pollChart/:id)",
+        "info": "",
+        "x": 470,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "b7d7b6a99797f04e",
+        "type": "function",
+        "z": "f1c27791682cd627",
+        "name": "Poll Builder",
+        "func": "polls = flow.get('polls')\n\nif(!polls) {\n    flow.set('polls', [])\n}\n\nCOLORS = {\n    green: 3,\n    red: 4,\n    blue: 1,\n    grey: 2\n}\n\ntimestamp = moment(new Date()).utc().valueOf()\n\npoll = {\n    id: timestamp,\n    type: msg.subcommand,\n    automated: true,\n    label: msg.payload,\n    userIds: [],\n    options: []\n}\n\nmsg.components = [{\n    type: 1,\n    components: []\n}]\n\nmsg.options.forEach(option =>{\n\n    custom_id = \"dev_\" + timestamp + \"_\" + option.label.replace(/[^a-z0-9]/gi, '').slice(0, 10)\n\n    msg.components[0].components.push({\n        type: 2,\n        label: option.label,\n        style: option.color ? COLORS[option.color] : COLORS[\"grey\"],\n        custom_id: custom_id\n    })\n\n    poll.options.push({\n        type: msg.subcommand,\n        count: 0,\n        label: option.label,\n        custom_id: custom_id\n    })\n})\n\npolls.push(poll)\n\nmsg.id = timestamp\nmsg.label = msg.payload\nmsg.selector = \"#myChart\"\nmsg.filename = \"poll\"\nmsg.url = `http://dev.ascendedtrading.com/pollChart/${timestamp}`\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 1150,
+        "y": 480,
+        "wires": [
+            [
+                "e927da87be2dd402"
+            ]
+        ]
+    },
+    {
+        "id": "70c1f11841f41a4c",
+        "type": "function",
+        "z": "f1c27791682cd627",
+        "name": "Create Discord Embed",
+        "func": " msg.embeds = {\n        \"description\": \"**Poll:** \" + msg.label,\n        \"color\": 0,\n        \"author\": {\n        },\n        \"fields\": [\n        ]\n}\n\n msg.embeds.image = {\n\n        \"url\": \"attachment://poll.png\"\n\n    }\n\n\nmsg.payload = {}\nmsg.interactionOptions = {}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1540,
+        "y": 540,
+        "wires": [
+            [
+                "c7d5bae103d6acde"
+            ]
+        ]
+    },
+    {
+        "id": "e927da87be2dd402",
+        "type": "link call",
+        "z": "f1c27791682cd627",
+        "name": "",
+        "links": [
+            "9d7c3728357819a5"
+        ],
+        "linkType": "static",
+        "timeout": "30",
+        "x": 1340,
+        "y": 540,
+        "wires": [
+            [
+                "70c1f11841f41a4c"
+            ]
+        ]
+    },
+    {
+        "id": "c7d5bae103d6acde",
+        "type": "link out",
+        "z": "f1c27791682cd627",
+        "name": "Send Poll to Discord",
+        "mode": "link",
+        "links": [
+            "18e87e645a79b0eb"
+        ],
+        "x": 1675,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "f96983d77c0d54cd",
+        "type": "function",
+        "z": "f1c27791682cd627",
+        "name": "Poll Message Update Builder",
+        "func": "polls = flow.get('polls')\n\npayload = false\n\npolls.forEach(poll => {\n    if(String(poll.id) === msg.interaction.id) {\n        payload = poll.label\n    }\n})\n\nnewMessage = {}\n\nnewMessage.selector = \"#myChart\"\nnewMessage.filename = \"poll\"\nnewMessage.id = msg.interaction.id\nnewMessage.label = payload\nnewMessage.action = \"edit\";\nnewMessage.message = msg.interaction.message.id;\nnewMessage.channel = msg.interaction.message.channelId;\n\nreturn newMessage;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 600,
+        "wires": [
+            [
+                "e927da87be2dd402"
+            ]
+        ]
+    },
+    {
+        "id": "2e5385956f09fc65",
+        "type": "trigger",
+        "z": "f1c27791682cd627",
+        "name": "Buffer",
+        "op1": "1",
+        "op2": "1",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "3",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 930,
+        "y": 600,
+        "wires": [
+            [
+                "f96983d77c0d54cd"
+            ]
+        ]
+    },
+    {
+        "id": "898ae628b4296992",
+        "type": "function",
+        "z": "f1c27791682cd627",
+        "name": "Poll Vote Handler",
+        "func": "polls = flow.get('polls')\n\ncustom_id = msg.payload.customId\nuserid = msg.payload.user.id\nid = custom_id.split('_')[0]\n\nupdate = false\n\npolls.forEach(poll =>{\n  if(String(poll.id) === id) {\n    if(!poll.userIds.includes(userid)) {\n      poll.userIds.push(userid)\n      update = true\n\n      poll.options.forEach(option =>{\n        if(option.custom_id == custom_id) {\n          option.count++\n        }\n      })\n    }\n  }\n})\n\nmsg.interaction = msg.payload\nmsg.interaction.id = id\n\nif(update) {\n  return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 600,
+        "wires": [
+            [
+                "2e5385956f09fc65"
+            ]
+        ]
+    },
+    {
+        "id": "67f8681ae8997d4c",
+        "type": "switch",
+        "z": "f1c27791682cd627",
+        "name": "",
+        "property": "payload.commandName",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "poll",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 480,
+        "wires": [
+            [
+                "63c48994a07d1c16"
+            ]
+        ]
+    },
+    {
+        "id": "63c48994a07d1c16",
+        "type": "change",
+        "z": "f1c27791682cd627",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "subcommand",
+                "pt": "msg",
+                "to": "payload.options._subcommand",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 660,
+        "y": 480,
+        "wires": [
+            [
+                "23aee976ac3901fd"
+            ]
+        ]
+    },
+    {
+        "id": "23aee976ac3901fd",
+        "type": "switch",
+        "z": "f1c27791682cd627",
+        "name": "",
+        "property": "subcommand",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "yes_or_no",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "profitability",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "multiple_choice",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 830,
+        "y": 480,
+        "wires": [
+            [
+                "77cc0db87e2b8b92"
+            ],
+            [
+                "7a9260b9f1d32379"
+            ],
+            [
+                "affdb321e91890d7"
+            ]
+        ]
+    },
+    {
+        "id": "77cc0db87e2b8b92",
+        "type": "function",
+        "z": "f1c27791682cd627",
+        "name": "yes_or_no",
+        "func": "// Only accessible via slash command\n// msg.payload = msg.interactionObject.options.getString('question')\n\nmsg.payload = \"Example\"\n\nmsg.options = [\n    {\n        label: \"Yes\",\n        color: \"green\"\n    },\n    {\n        label: \"No\",\n        color: \"red\"\n    },\n]\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 440,
+        "wires": [
+            [
+                "b7d7b6a99797f04e"
+            ]
+        ]
+    },
+    {
+        "id": "7a9260b9f1d32379",
+        "type": "function",
+        "z": "f1c27791682cd627",
+        "name": "profitability",
+        "func": "// Only accessible via Slash Commands\n// msg.payload = \"**Anonymous Profitability Check**\\n\" + msg.interactionObject.options.getString('play')\n\nmsg.payload = \"**Anonymous Profitability Check**\\nExample\"\n\nmsg.options = [\n    {\n        label: \"Green\",\n        color: \"green\"\n    },\n    {\n        label: \"Red\",\n        color: \"red\"\n    },\n    {\n        label: \"Didn't Trade\",\n        color: \"grey\"\n    }\n]\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 480,
+        "wires": [
+            [
+                "b7d7b6a99797f04e"
+            ]
+        ]
+    },
+    {
+        "id": "affdb321e91890d7",
+        "type": "function",
+        "z": "f1c27791682cd627",
+        "name": "multiple_choice",
+        "func": "msg.options = []\n\nmsg.payload.options._hoistedOptions.forEach(option => {\n    if(option.name.includes(\"option\")) {\n        msg.options.push({label: option.value})\n    }\n})\n\n// Only accessible via Slash Commands\n// msg.payload = msg.interactionObject.options.getString('question')\n\nmsg.payload = \"Example\"\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 520,
+        "wires": [
+            [
+                "b7d7b6a99797f04e"
+            ]
+        ]
+    },
+    {
+        "id": "01d09995f43d6492",
+        "type": "link in",
+        "z": "f1c27791682cd627",
+        "name": "link in 1",
+        "links": [
+            "19072270ad5a3489"
+        ],
+        "x": 515,
+        "y": 600,
+        "wires": [
+            [
+                "3359a2710a791fb3"
+            ]
+        ]
+    },
+    {
+        "id": "3359a2710a791fb3",
+        "type": "switch",
+        "z": "f1c27791682cd627",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "poll/action",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 600,
+        "y": 600,
+        "wires": [
+            [
+                "898ae628b4296992"
+            ]
+        ]
+    },
+    {
+        "id": "09df724c238db629",
+        "type": "comment",
+        "z": "f1c27791682cd627",
+        "name": "Vote Handler",
+        "info": "",
+        "x": 570,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "3f16b7e976903c94",
+        "type": "function",
+        "z": "f1c27791682cd627",
+        "name": "Test Data",
+        "func": "msg = {\n   \"type\":\"APPLICATION_COMMAND\",\n   \"id\":\"1046181133542498384\",\n   \"user\":{\n      \"id\":\"768562231964860426\",\n      \"bot\":false,\n      \"system\":false,\n      \"flags\":0,\n      \"username\":\"Conqueror\",\n      \"discriminator\":\"6969\",\n      \"avatar\":\"dacf6c92a453cbec508c7c7bc5150f58\",\n      \"banner\":\"0ecef034f56285a73efd5720d167aac9\",\n      \"accentColor\":null,\n      \"createdTimestamp\":1603309915296,\n      \"defaultAvatarURL\":\"https://cdn.discordapp.com/embed/avatars/4.png\",\n      \"hexAccentColor\":null,\n      \"tag\":\"Conqueror#6969\",\n      \"avatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"displayAvatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"bannerURL\":\"https://cdn.discordapp.com/banners/768562231964860426/0ecef034f56285a73efd5720d167aac9.webp\"\n   },\n   \"version\":1,\n   \"appPermissions\":\"1072772402753\",\n   \"memberPermissions\":\"4398046511103\",\n   \"locale\":\"en-US\",\n   \"guildLocale\":\"en-US\",\n   \"commandId\":\"1045957132975079489\",\n   \"commandName\":\"poll\",\n   \"deferred\":true,\n   \"replied\":false,\n   \"ephemeral\":false,\n   \"options\":{\n      \"_group\":null,\n      \"_subcommand\":\"profitability\",\n      \"_hoistedOptions\":[\n         {\n            \"name\":\"play\",\n            \"type\":\"STRING\",\n            \"value\":\"Example\"\n         }\n      ]\n   },\n   \"replyMessage\":{\n      \"channelId\":\"1045767424575819886\",\n      \"guildId\":\"994590548520345710\",\n      \"id\":\"1046181134272311357\",\n      \"createdTimestamp\":1669499419516,\n      \"type\":\"APPLICATION_COMMAND\",\n      \"system\":false,\n      \"content\":\"\",\n      \"authorId\":\"903343207323148349\",\n      \"pinned\":false,\n      \"tts\":false,\n      \"embeds\":[\n         \n      ],\n      \"components\":[\n         \n      ],\n      \"attachments\":[\n         \n      ],\n      \"stickers\":[\n         \n      ],\n      \"editedTimestamp\":null,\n      \"activity\":null,\n      \"flags\":128,\n      \"reference\":null,\n      \"cleanContent\":\"\"\n   }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 480,
+        "wires": [
+            [
+                "67f8681ae8997d4c"
+            ]
+        ]
+    },
+    {
+        "id": "46899ef52d0a2edf",
+        "type": "inject",
+        "z": "f1c27791682cd627",
+        "name": "Profitability Command",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 480,
+        "wires": [
+            [
+                "3f16b7e976903c94"
+            ]
+        ]
+    },
+    {
+        "id": "40e7a2896685adbc",
+        "type": "function",
+        "z": "f1c27791682cd627",
+        "name": "Test Data",
+        "func": "msg = {\n   \"type\":\"APPLICATION_COMMAND\",\n   \"id\":\"1046181133542498384\",\n   \"user\":{\n      \"id\":\"768562231964860426\",\n      \"bot\":false,\n      \"system\":false,\n      \"flags\":0,\n      \"username\":\"Conqueror\",\n      \"discriminator\":\"6969\",\n      \"avatar\":\"dacf6c92a453cbec508c7c7bc5150f58\",\n      \"banner\":\"0ecef034f56285a73efd5720d167aac9\",\n      \"accentColor\":null,\n      \"createdTimestamp\":1603309915296,\n      \"defaultAvatarURL\":\"https://cdn.discordapp.com/embed/avatars/4.png\",\n      \"hexAccentColor\":null,\n      \"tag\":\"Conqueror#6969\",\n      \"avatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"displayAvatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"bannerURL\":\"https://cdn.discordapp.com/banners/768562231964860426/0ecef034f56285a73efd5720d167aac9.webp\"\n   },\n   \"version\":1,\n   \"appPermissions\":\"1072772402753\",\n   \"memberPermissions\":\"4398046511103\",\n   \"locale\":\"en-US\",\n   \"guildLocale\":\"en-US\",\n   \"commandId\":\"1045957132975079489\",\n   \"commandName\":\"poll\",\n   \"deferred\":true,\n   \"replied\":false,\n   \"ephemeral\":false,\n   \"options\":{\n      \"_group\": null,\n      \"_subcommand\": \"yes_or_no\",\n      \"_hoistedOptions\": [\n         {\n            \"name\": \"question\",\n            \"type\": \"STRING\",\n            \"value\": \"Example\"\n         }\n      ]\n   },\n   \"replyMessage\":{\n      \"channelId\":\"1045767424575819886\",\n      \"guildId\":\"994590548520345710\",\n      \"id\":\"1046181134272311357\",\n      \"createdTimestamp\":1669499419516,\n      \"type\":\"APPLICATION_COMMAND\",\n      \"system\":false,\n      \"content\":\"\",\n      \"authorId\":\"903343207323148349\",\n      \"pinned\":false,\n      \"tts\":false,\n      \"embeds\":[\n         \n      ],\n      \"components\":[\n         \n      ],\n      \"attachments\":[\n         \n      ],\n      \"stickers\":[\n         \n      ],\n      \"editedTimestamp\":null,\n      \"activity\":null,\n      \"flags\":128,\n      \"reference\":null,\n      \"cleanContent\":\"\"\n   }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 440,
+        "wires": [
+            [
+                "67f8681ae8997d4c"
+            ]
+        ]
+    },
+    {
+        "id": "21c5e451ca661bf1",
+        "type": "inject",
+        "z": "f1c27791682cd627",
+        "name": "Yes_or_no Command",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 440,
+        "wires": [
+            [
+                "40e7a2896685adbc"
+            ]
+        ]
+    },
+    {
+        "id": "2a39995f04207c2a",
+        "type": "function",
+        "z": "f1c27791682cd627",
+        "name": "Test Data",
+        "func": "msg = {\n   \"type\":\"APPLICATION_COMMAND\",\n   \"id\":\"1046181133542498384\",\n   \"user\":{\n      \"id\":\"768562231964860426\",\n      \"bot\":false,\n      \"system\":false,\n      \"flags\":0,\n      \"username\":\"Conqueror\",\n      \"discriminator\":\"6969\",\n      \"avatar\":\"dacf6c92a453cbec508c7c7bc5150f58\",\n      \"banner\":\"0ecef034f56285a73efd5720d167aac9\",\n      \"accentColor\":null,\n      \"createdTimestamp\":1603309915296,\n      \"defaultAvatarURL\":\"https://cdn.discordapp.com/embed/avatars/4.png\",\n      \"hexAccentColor\":null,\n      \"tag\":\"Conqueror#6969\",\n      \"avatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"displayAvatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"bannerURL\":\"https://cdn.discordapp.com/banners/768562231964860426/0ecef034f56285a73efd5720d167aac9.webp\"\n   },\n   \"version\":1,\n   \"appPermissions\":\"1072772402753\",\n   \"memberPermissions\":\"4398046511103\",\n   \"locale\":\"en-US\",\n   \"guildLocale\":\"en-US\",\n   \"commandId\":\"1045957132975079489\",\n   \"commandName\":\"poll\",\n   \"deferred\":true,\n   \"replied\":false,\n   \"ephemeral\":false,\n   \"options\":{\n      \"_group\": null,\n      \"_subcommand\": \"multiple_choice\",\n      \"_hoistedOptions\": [\n         {\n            \"name\": \"question\",\n            \"type\": \"STRING\",\n            \"value\": \"Example\"\n         },\n         {\n            \"name\": \"option_one\",\n            \"type\": \"STRING\",\n            \"value\": \"One\"\n         },\n         {\n            \"name\": \"option_two\",\n            \"type\": \"STRING\",\n            \"value\": \"Two\"\n         },\n         {\n            \"name\": \"option_three\",\n            \"type\": \"STRING\",\n            \"value\": \"Three\"\n         },\n         {\n            \"name\": \"option_four\",\n            \"type\": \"STRING\",\n            \"value\": \"Four\"\n         },\n         {\n            \"name\": \"option_five\",\n            \"type\": \"STRING\",\n            \"value\": \"Five\"\n         }\n      ]\n   },\n   \"replyMessage\":{\n      \"channelId\":\"1045767424575819886\",\n      \"guildId\":\"994590548520345710\",\n      \"id\":\"1046181134272311357\",\n      \"createdTimestamp\":1669499419516,\n      \"type\":\"APPLICATION_COMMAND\",\n      \"system\":false,\n      \"content\":\"\",\n      \"authorId\":\"903343207323148349\",\n      \"pinned\":false,\n      \"tts\":false,\n      \"embeds\":[\n         \n      ],\n      \"components\":[\n         \n      ],\n      \"attachments\":[\n         \n      ],\n      \"stickers\":[\n         \n      ],\n      \"editedTimestamp\":null,\n      \"activity\":null,\n      \"flags\":128,\n      \"reference\":null,\n      \"cleanContent\":\"\"\n   }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 520,
+        "wires": [
+            [
+                "67f8681ae8997d4c"
+            ]
+        ]
+    },
+    {
+        "id": "c76ac509d93cd979",
+        "type": "inject",
+        "z": "f1c27791682cd627",
+        "name": "Multiple_choice Command",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 520,
+        "wires": [
+            [
+                "2a39995f04207c2a"
+            ]
+        ]
     },
     {
         "id": "ae5cf8f5fe631665",
@@ -798,7 +1387,9 @@
         "z": "018d3d9f8b1baf1f",
         "name": "Core In",
         "mode": "link",
-        "links": [],
+        "links": [
+            "01d09995f43d6492"
+        ],
         "x": 365,
         "y": 60,
         "wires": []
@@ -883,7 +1474,8 @@
         "name": "Discord Out",
         "links": [
             "07a7ad65a01cce3e",
-            "3df6b4ba4e138e27"
+            "3df6b4ba4e138e27",
+            "c7d5bae103d6acde"
         ],
         "x": 245,
         "y": 340,
@@ -1096,5 +1688,57 @@
                 "3cc523b116753f59"
             ]
         ]
+    },
+    {
+        "id": "9d7c3728357819a5",
+        "type": "link in",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Browser Queue",
+        "links": [],
+        "x": 505,
+        "y": 340,
+        "wires": [
+            [
+                "fc098e4898e10568"
+            ]
+        ],
+        "info": "# Send message to the #playground channel in Valhalla\n# \n\n### Send a text message\n`msg.payload = \"Hello World\"`\n\n### Send an embed \nHelpful tool: https://glitchii.github.io/embedbuilder/\n`msg.embeds = \n        {\n            \"title\": \"Hello ~~people~~ world :wave:\",\n            \"description\": \"You can use [links](https://discord.com) or emojis :smile: 😎\\n```\\nAnd also code blocks\\n```\",\n            \"color\": 4321431,\n            \"timestamp\": \"2022-11-25T03:52:05.554Z\",\n            \"url\": \"https://discord.com\",\n            \"author\": {\n                \"name\": \"Author name\",\n                \"url\": \"https://discord.com\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"thumbnail\": {\n                \"url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"image\": {\n                \"url\": \"https://glitchii.github.io/embedbuilder/assets/media/banner.png\"\n            },\n            \"footer\": {\n                \"text\": \"Footer text\",\n                \"icon_url\": \"https://cdn.discordapp.com/embed/avatars/0.png\"\n            },\n            \"fields\": [\n                {\n                    \"name\": \"Field 1, *lorem* **ipsum**, ~~dolor~~\",\n                    \"value\": \"Field value\"\n                },\n                {\n                    \"name\": \"Field 2\",\n                    \"value\": \"You can use custom emojis <:Kekwlaugh:722088222766923847>. <:GangstaBlob:742256196295065661>\",\n                    \"inline\": false\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"Fields can be inline\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"*Lorem ipsum*\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Inline field\",\n                    \"value\": \"value\",\n                    \"inline\": true\n                },\n                {\n                    \"name\": \"Another field\",\n                    \"value\": \"> Nope, didn't forget about this\",\n                    \"inline\": false\n                }\n            ]\n        }\n    `"
+    },
+    {
+        "id": "fc098e4898e10568",
+        "type": "change",
+        "z": "018d3d9f8b1baf1f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "core",
+                "pt": "msg",
+                "to": "browser/queue",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 340,
+        "wires": [
+            [
+                "edccce7940c99df0"
+            ]
+        ]
+    },
+    {
+        "id": "64983a1398fe6466",
+        "type": "comment",
+        "z": "018d3d9f8b1baf1f",
+        "name": "Browser Queue",
+        "info": "Queue a screenshot from Mimir's screenshot browser function.",
+        "x": 620,
+        "y": 300,
+        "wires": []
     }
 ]
