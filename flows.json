@@ -16,6 +16,14 @@
         "env": []
     },
     {
+        "id": "279b5e85f337e814",
+        "type": "tab",
+        "label": "Core Function Examples",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "018d3d9f8b1baf1f",
         "type": "tab",
         "label": "Mimir Core Connections",
@@ -24,11 +32,188 @@
         "env": []
     },
     {
+        "id": "e248a3a8bfe42597",
+        "type": "group",
+        "z": "279b5e85f337e814",
+        "name": "EXAMPLE: Create Discord Events from Market Calendar Events",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "c1c14b35f4ff7bd6",
+            "106db5229832742d",
+            "c3154cb84fa6828f",
+            "87c96848841d271a",
+            "fb4b5a415af84a64",
+            "cc3346dd2765db98",
+            "fe693f292505bb4c"
+        ],
+        "x": 34,
+        "y": 39,
+        "w": 992,
+        "h": 182
+    },
+    {
+        "id": "1a1f49435933da97",
+        "type": "group",
+        "z": "f1c27791682cd627",
+        "name": "EXAMPLE: Fed Rate Command",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "27906d69ba913f10",
+            "6d835c98a7d933c5",
+            "42cba602d3bac2f0",
+            "7b256abe5472915f",
+            "cbb32f226e06b0b3",
+            "fba2be9c0fbd2527",
+            "08470656f5161693",
+            "3df6b4ba4e138e27"
+        ],
+        "x": 34,
+        "y": 39,
+        "w": 1182,
+        "h": 122
+    },
+    {
+        "id": "aa549e3976ce96df",
+        "type": "group",
+        "z": "f1c27791682cd627",
+        "name": "EXAMPLE: Polls Command",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "e74d700b075e28df",
+            "5a521abdfb080630",
+            "f68e6bae010a94ac",
+            "f4e8217ddb6b0744",
+            "fd79bf6f0c8841f8",
+            "f11f52296125c659",
+            "d64b58feca19e354",
+            "b7d7b6a99797f04e",
+            "70c1f11841f41a4c",
+            "e927da87be2dd402",
+            "c7d5bae103d6acde",
+            "f96983d77c0d54cd",
+            "2e5385956f09fc65",
+            "898ae628b4296992",
+            "67f8681ae8997d4c",
+            "63c48994a07d1c16",
+            "23aee976ac3901fd",
+            "77cc0db87e2b8b92",
+            "7a9260b9f1d32379",
+            "affdb321e91890d7",
+            "01d09995f43d6492",
+            "3359a2710a791fb3",
+            "09df724c238db629",
+            "3f16b7e976903c94",
+            "46899ef52d0a2edf",
+            "40e7a2896685adbc",
+            "21c5e451ca661bf1",
+            "2a39995f04207c2a",
+            "c76ac509d93cd979",
+            "65976a82bb2ab639"
+        ],
+        "x": 34,
+        "y": 199,
+        "w": 1702,
+        "h": 402
+    },
+    {
+        "id": "384be01a0571995c",
+        "type": "group",
+        "z": "84134100670d554b",
+        "name": "Example Flow",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "b63fcc8ba57942c1",
+            "fde5f82253615978",
+            "7131e2df87afec92",
+            "cfc311f303c73af4"
+        ],
+        "x": 34,
+        "y": 39,
+        "w": 512,
+        "h": 122
+    },
+    {
+        "id": "c90a4980472fdea0",
+        "type": "group",
+        "z": "84134100670d554b",
+        "name": "Example Flow 2",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "0812b5a5d01ccaa5",
+            "28251d9586747408",
+            "205cbd7d50058ef6",
+            "07a7ad65a01cce3e"
+        ],
+        "x": 34,
+        "y": 179,
+        "w": 522,
+        "h": 122
+    },
+    {
+        "id": "6c0a37c3e1f29f0e",
+        "type": "group",
+        "z": "84134100670d554b",
+        "name": "Example Flow 3",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "4f3526a78ff93de4",
+            "e193aedb5d020d3d",
+            "2229216446e016b1",
+            "80835ac417fed99f",
+            "4c4136a9951681d0",
+            "3dad1347f0e61188",
+            "8bbd07b70ff49f08",
+            "e86aeed7a3a3e201",
+            "3d48c94cd42d041f",
+            "b19ad028538d3a8a",
+            "66c536f33380abde",
+            "89ed6dd1541536e3",
+            "e6cba750f728b97a",
+            "5aabc3cdee9a747f"
+        ],
+        "x": 34,
+        "y": 319,
+        "w": 812,
+        "h": 262
+    },
+    {
+        "id": "62860105d05a2d31",
+        "type": "group",
+        "z": "84134100670d554b",
+        "name": "Example Flow 4",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "129ad823bf03e17b",
+            "37c5acc9d3a844e4",
+            "da31bb8096580457",
+            "49038ea58227fb2a"
+        ],
+        "x": 34,
+        "y": 599,
+        "w": 512,
+        "h": 122
+    },
+    {
         "id": "5aabc3cdee9a747f",
         "type": "junction",
         "z": "84134100670d554b",
-        "x": 660,
-        "y": 620,
+        "g": "6c0a37c3e1f29f0e",
+        "x": 640,
+        "y": 540,
         "wires": [
             [
                 "3dad1347f0e61188"
@@ -57,6 +242,7 @@
         "id": "b63fcc8ba57942c1",
         "type": "inject",
         "z": "84134100670d554b",
+        "g": "384be01a0571995c",
         "name": "",
         "props": [
             {
@@ -74,8 +260,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 160,
-        "y": 200,
+        "x": 140,
+        "y": 120,
         "wires": [
             [
                 "fde5f82253615978"
@@ -86,6 +272,7 @@
         "id": "fde5f82253615978",
         "type": "function",
         "z": "84134100670d554b",
+        "g": "384be01a0571995c",
         "name": "Hello World",
         "func": "node.warn(\"Hello World\")\nreturn msg;",
         "outputs": 1,
@@ -93,8 +280,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 200,
+        "x": 290,
+        "y": 120,
         "wires": [
             [
                 "7131e2df87afec92"
@@ -105,6 +292,7 @@
         "id": "7131e2df87afec92",
         "type": "debug",
         "z": "84134100670d554b",
+        "g": "384be01a0571995c",
         "name": "debug 1",
         "active": true,
         "tosidebar": true,
@@ -113,34 +301,37 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 460,
-        "y": 200,
+        "x": 440,
+        "y": 120,
         "wires": []
     },
     {
         "id": "cfc311f303c73af4",
         "type": "comment",
         "z": "84134100670d554b",
-        "name": "Example Flow",
+        "g": "384be01a0571995c",
+        "name": "Info",
         "info": "This flow injects a timestamp into the function node which then uses `node.warn(\"Hello World\")` to place a warning in the debug console (accessible in the top right of your screen with the `bug` icon). The message is then passed through that node and into the debug node which then logs the timestamp as it's configured to show msg.payload. It can also be configured to show the entire contents of the `msg` property.",
-        "x": 150,
-        "y": 160,
+        "x": 110,
+        "y": 80,
         "wires": []
     },
     {
         "id": "0812b5a5d01ccaa5",
         "type": "comment",
         "z": "84134100670d554b",
-        "name": "Example Flow 2",
+        "g": "c90a4980472fdea0",
+        "name": "Info",
         "info": "This flow demonstrates sending a message to discord.\n\n 1. Click the button on the inject node to inject a message (timestamp) into the next node and start the flow\n 2. The change node sets `msg.payload` to \"Hello World\", the discord function converts `msg.payload` into the \"content\" field of a discord message.\n 3. The link out node connects to the `Discord Out` connector which forwards the message to Mimir Core and to the #playground channel in Discord.",
-        "x": 160,
-        "y": 300,
+        "x": 110,
+        "y": 220,
         "wires": []
     },
     {
         "id": "28251d9586747408",
         "type": "inject",
         "z": "84134100670d554b",
+        "g": "c90a4980472fdea0",
         "name": "",
         "props": [
             {
@@ -158,8 +349,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 160,
-        "y": 340,
+        "x": 140,
+        "y": 260,
         "wires": [
             [
                 "205cbd7d50058ef6"
@@ -170,6 +361,7 @@
         "id": "205cbd7d50058ef6",
         "type": "change",
         "z": "84134100670d554b",
+        "g": "c90a4980472fdea0",
         "name": "set msg.payload to \"Hello World\"",
         "rules": [
             {
@@ -185,8 +377,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 370,
-        "y": 340,
+        "x": 350,
+        "y": 260,
         "wires": [
             [
                 "07a7ad65a01cce3e"
@@ -197,30 +389,33 @@
         "id": "07a7ad65a01cce3e",
         "type": "link out",
         "z": "84134100670d554b",
+        "g": "c90a4980472fdea0",
         "name": "Discord Out Shortcut",
         "mode": "link",
         "links": [
             "18e87e645a79b0eb",
             "629b2f47e063001c"
         ],
-        "x": 535,
-        "y": 340,
+        "x": 515,
+        "y": 260,
         "wires": []
     },
     {
         "id": "4f3526a78ff93de4",
         "type": "comment",
         "z": "84134100670d554b",
-        "name": "Example Flow 3",
+        "g": "6c0a37c3e1f29f0e",
+        "name": "Info",
         "info": "This example is broken up into four parts.\n\n**Part One (Top Left)**\nThe inject node injects messages into two nodes at the same time. Each node message is referred to as \"context\" and the change nodes put values into a \"context store\". You can view context stores on by clicking the \"down arrow\" next to the bug icon in the top right of the screen. When the change nodes are triggered they add values to two different stores:\n\n1. Flow: context in this store is only availiable on the same \"Flow\" which is what is the tabs are called. This \"Flow\" is called \"Tutorials\" so the data stored in that Flow context store is only availiable to the nodes within the \"Tutorials\" flow.\n2. Global: context in this store is availiable across the entire application.\n\n**Part Two (Top Right)**\nThe inject nodes in this section delete the variables we set in the context stores.\n\n**Part Three (Bottom Left)**\nHere we demonstrate setting context within a function node. You can also retrieve context within a function node by using `get` instead of `set`.\n\n**Part Four (Bottom Right)**\nThese inject nodes push the current value of each name variable into the debug panel.\n\n---\n\nContextStorage is currently the method Mimir uses to store *all* it's data. I'll likely be migrating to a database at some point in the future, however, thus far it has 100's of thousands of records and sees zero slowdown.\n\nContext also has two storage formats:\n\n1. File: This is the default storage method for Mimir's configuration. Context in both the Flow and Global stores is saved to disk and survives reboots, etc.\n2. Memory Only: This storage method which can be called by adding \"memoryOnly\" as a third option in `get` and `set` calls does exactly as you'd figure. The stores survive as long as Node-RED is running but are cleared upon reboot.\n\nOne more note on context is that when it's brought out of the store, it's brought out as a reference by default. Meaning if you were to do something like:\n\n`this = global.get('this')`\n`this = false`\n\n\"this\" is then updated in the context store automatically. In order to avoid this behavior you can select \"Deep copy value\" in a change node if you're accessing context from there or you can use the following helper function to make a copy of the context without the reference:\n\n`this = RED.util.cloneMessage( global.get(\"this\") )`\n`this = false`\n\nIn that scenario, \"this\" isn't updated.\n\nOne final note is that context stores can be thought of as JSON fields in a database. They can store arrays and the like.",
-        "x": 160,
-        "y": 440,
+        "x": 110,
+        "y": 360,
         "wires": []
     },
     {
         "id": "e193aedb5d020d3d",
         "type": "inject",
         "z": "84134100670d554b",
+        "g": "6c0a37c3e1f29f0e",
         "name": "",
         "props": [
             {
@@ -238,8 +433,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 160,
-        "y": 480,
+        "x": 140,
+        "y": 400,
         "wires": [
             [
                 "2229216446e016b1",
@@ -251,6 +446,7 @@
         "id": "2229216446e016b1",
         "type": "change",
         "z": "84134100670d554b",
+        "g": "6c0a37c3e1f29f0e",
         "name": "",
         "rules": [
             {
@@ -266,8 +462,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
-        "y": 480,
+        "x": 320,
+        "y": 400,
         "wires": [
             []
         ]
@@ -276,6 +472,7 @@
         "id": "80835ac417fed99f",
         "type": "change",
         "z": "84134100670d554b",
+        "g": "6c0a37c3e1f29f0e",
         "name": "",
         "rules": [
             {
@@ -291,8 +488,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
-        "y": 520,
+        "x": 320,
+        "y": 440,
         "wires": [
             []
         ]
@@ -301,6 +498,7 @@
         "id": "4c4136a9951681d0",
         "type": "inject",
         "z": "84134100670d554b",
+        "g": "6c0a37c3e1f29f0e",
         "name": "",
         "props": [
             {
@@ -318,8 +516,8 @@
         "topic": "",
         "payload": "demo",
         "payloadType": "flow",
-        "x": 540,
-        "y": 580,
+        "x": 520,
+        "y": 500,
         "wires": [
             [
                 "5aabc3cdee9a747f"
@@ -330,6 +528,7 @@
         "id": "3dad1347f0e61188",
         "type": "debug",
         "z": "84134100670d554b",
+        "g": "6c0a37c3e1f29f0e",
         "name": "debug 2",
         "active": true,
         "tosidebar": true,
@@ -338,14 +537,15 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 760,
-        "y": 620,
+        "x": 740,
+        "y": 540,
         "wires": []
     },
     {
         "id": "8bbd07b70ff49f08",
         "type": "inject",
         "z": "84134100670d554b",
+        "g": "6c0a37c3e1f29f0e",
         "name": "",
         "props": [
             {
@@ -363,8 +563,8 @@
         "topic": "",
         "payload": "demo",
         "payloadType": "global",
-        "x": 550,
-        "y": 620,
+        "x": 530,
+        "y": 540,
         "wires": [
             [
                 "5aabc3cdee9a747f"
@@ -375,6 +575,7 @@
         "id": "e86aeed7a3a3e201",
         "type": "inject",
         "z": "84134100670d554b",
+        "g": "6c0a37c3e1f29f0e",
         "name": "",
         "props": [
             {
@@ -392,8 +593,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 540,
-        "y": 480,
+        "x": 520,
+        "y": 400,
         "wires": [
             [
                 "3d48c94cd42d041f",
@@ -405,6 +606,7 @@
         "id": "3d48c94cd42d041f",
         "type": "change",
         "z": "84134100670d554b",
+        "g": "6c0a37c3e1f29f0e",
         "name": "",
         "rules": [
             {
@@ -418,8 +620,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 730,
-        "y": 480,
+        "x": 710,
+        "y": 400,
         "wires": [
             []
         ]
@@ -428,6 +630,7 @@
         "id": "b19ad028538d3a8a",
         "type": "change",
         "z": "84134100670d554b",
+        "g": "6c0a37c3e1f29f0e",
         "name": "",
         "rules": [
             {
@@ -441,8 +644,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 730,
-        "y": 520,
+        "x": 710,
+        "y": 440,
         "wires": [
             []
         ]
@@ -451,6 +654,7 @@
         "id": "66c536f33380abde",
         "type": "inject",
         "z": "84134100670d554b",
+        "g": "6c0a37c3e1f29f0e",
         "name": "",
         "props": [
             {
@@ -468,8 +672,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 160,
-        "y": 580,
+        "x": 140,
+        "y": 500,
         "wires": [
             [
                 "89ed6dd1541536e3",
@@ -481,6 +685,7 @@
         "id": "89ed6dd1541536e3",
         "type": "function",
         "z": "84134100670d554b",
+        "g": "6c0a37c3e1f29f0e",
         "name": "set flow.demo",
         "func": "flow.set('demo', 'Hello Function Flow')\nreturn msg;",
         "outputs": 1,
@@ -488,8 +693,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 580,
+        "x": 320,
+        "y": 500,
         "wires": [
             []
         ]
@@ -498,6 +703,7 @@
         "id": "e6cba750f728b97a",
         "type": "function",
         "z": "84134100670d554b",
+        "g": "6c0a37c3e1f29f0e",
         "name": "set global.demo",
         "func": "global.set('demo', 'Hello Function Global')\nreturn msg;",
         "outputs": 1,
@@ -505,8 +711,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 620,
+        "x": 320,
+        "y": 540,
         "wires": [
             []
         ]
@@ -515,16 +721,18 @@
         "id": "129ad823bf03e17b",
         "type": "comment",
         "z": "84134100670d554b",
-        "name": "Example Flow 4",
+        "g": "62860105d05a2d31",
+        "name": "Info",
         "info": "This stupidly simple example is actually pretty cool.\n\n1. The inject node, we've seen this before.\n2. This is a `link call` node which calls a `link in` node, in this case being the `MCAL Data` node in the \"Mimir Connections\" Flow. The message is sent to Mimir Core via the WebSocket connection and runs through the part of that system that attaches the market calendar data to the payload of the message. Now the cool part is that it runs through Mimir Core as normal, but when the data is returned here, the message comes back in the state it left meaning the `WebSocket In` connection returns the message to the \"calling node\", which again is just this one node here. So essentially this `link call` has an entire process behind it but in pratice simply appends data to the `msg.payload` property.\n3. The data returned can be viewed in the debug pane that we've talked about before.\n\n---\n\nFor a peek behind the curtain, what is happening is that the `link call` info is stored on the msg as `msg._linkSource` which is what Node-RED uses to return the message once it hits a `link out` node configured to \"return to calling node\".\n\nWhen messages hit Mimir Core the `msg._linkSource` property is stripped but saved in a global context object as `object[__msgid__] = msg._linkSource`, in Node-RED the message ID's are preserved until termination and can be accessed at `__msgid__` so once the message makes its way through Mimir Core, I am simply referencing that previously stored value and re-attaching it to the message before it's returned through the WebSocket. Mimir Core uses a lot of link calls so while the message is on that side it's able to pass through them unimpeded.\n\nThis is a pretty good example of when to use memoryOnly as the context store. ",
-        "x": 160,
-        "y": 720,
+        "x": 110,
+        "y": 640,
         "wires": []
     },
     {
         "id": "37c5acc9d3a844e4",
         "type": "inject",
         "z": "84134100670d554b",
+        "g": "62860105d05a2d31",
         "name": "",
         "props": [
             {
@@ -542,8 +750,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 160,
-        "y": 780,
+        "x": 140,
+        "y": 680,
         "wires": [
             [
                 "da31bb8096580457"
@@ -554,14 +762,15 @@
         "id": "da31bb8096580457",
         "type": "link call",
         "z": "84134100670d554b",
+        "g": "62860105d05a2d31",
         "name": "",
         "links": [
             "34ff5c41b8079126"
         ],
         "linkType": "static",
         "timeout": "30",
-        "x": 310,
-        "y": 780,
+        "x": 290,
+        "y": 680,
         "wires": [
             [
                 "49038ea58227fb2a"
@@ -572,6 +781,7 @@
         "id": "49038ea58227fb2a",
         "type": "debug",
         "z": "84134100670d554b",
+        "g": "62860105d05a2d31",
         "name": "debug 3",
         "active": true,
         "tosidebar": true,
@@ -581,14 +791,15 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 460,
-        "y": 780,
+        "x": 440,
+        "y": 680,
         "wires": []
     },
     {
         "id": "27906d69ba913f10",
         "type": "function",
         "z": "f1c27791682cd627",
+        "g": "1a1f49435933da97",
         "name": "Construct Table For Discord",
         "func": "var rows = []\n\nif(msg.subcommand == \"default\") {\n\n    count = 0\n    \n    while (count < 2) {\n        rows.push([msg.data[count].meetingDate.replace(\" 02:00PM ET\", \"\"), \"\", \"\", \"\"])\n    rows.push([\"Target Rate\", \"Today\", \"-1\", \"-7\"])\n    \n    msg.data[count].rows.forEach(row =>{\n        rows.push([row.targetRate, row.currentProb + \"%\", row.previousDayProb + \"%\", row.previousWeekProb + \"%\"])\n    })\n    \n    rows.push([\"\", \"\", \"\", \"\"])\n    count++\n    }\n} else {\n    matches = 0\n    \n    msg.data.forEach(data => {\n        \n        query = data.meetingDate.split(\" \")\n        query = `${query[0].toUpperCase()} ${query[2]}`\n        \n        if(msg.subcommand.toUpperCase() == query) {\n              rows.push([data.meetingDate.replace(\" 02:00PM ET\", \"\"), \"\", \"\", \"\"])\n    rows.push([\"Target Rate\", \"Today\", \"-1\", \"-7\"])\n    \n    data.rows.forEach(row =>{\n        rows.push([row.targetRate, row.currentProb + \"%\", row.previousDayProb + \"%\", row.previousWeekProb + \"%\"])\n    })\n        }\n        \n    matches++\n        \n        \n    })\n    \n    if(matches == 0) {\n        rows.push([\"No Results Found\", \"\", \"\", \"\"])\n    }\n    \n    \n}\n\nrows.pop()\n\nvar table = \n    new asciiTable.AsciiTable3().setAlign(3, asciiTable.AlignmentEnum.CENTER)\n    .addRowMatrix(rows);\n    \ntable.setStyle('compact');\n\nvar description = table.toString()\n\nmsg.payload = \"```\" + description + \"```\"\n\nreturn msg;",
         "outputs": 1,
@@ -602,7 +813,7 @@
             }
         ],
         "x": 1020,
-        "y": 140,
+        "y": 100,
         "wires": [
             [
                 "3df6b4ba4e138e27"
@@ -613,6 +824,7 @@
         "id": "6d835c98a7d933c5",
         "type": "function",
         "z": "f1c27791682cd627",
+        "g": "1a1f49435933da97",
         "name": "Parse Command",
         "func": "if(msg.date) {\n    msg.subcommand = msg.date\n} else {\n    msg.subcommand = \"default\"\n}\n\nreturn msg;\n\n",
         "outputs": 1,
@@ -621,7 +833,7 @@
         "finalize": "",
         "libs": [],
         "x": 290,
-        "y": 140,
+        "y": 100,
         "wires": [
             [
                 "42cba602d3bac2f0"
@@ -632,6 +844,7 @@
         "id": "42cba602d3bac2f0",
         "type": "http request",
         "z": "f1c27791682cd627",
+        "g": "1a1f49435933da97",
         "name": "Investing.com",
         "method": "GET",
         "ret": "txt",
@@ -652,7 +865,7 @@
             }
         ],
         "x": 480,
-        "y": 140,
+        "y": 100,
         "wires": [
             [
                 "7b256abe5472915f"
@@ -663,6 +876,7 @@
         "id": "7b256abe5472915f",
         "type": "html",
         "z": "f1c27791682cd627",
+        "g": "1a1f49435933da97",
         "name": "Grab Cards",
         "property": "payload",
         "outproperty": "payload",
@@ -670,7 +884,7 @@
         "ret": "html",
         "as": "single",
         "x": 650,
-        "y": 140,
+        "y": 100,
         "wires": [
             [
                 "cbb32f226e06b0b3"
@@ -681,6 +895,7 @@
         "id": "cbb32f226e06b0b3",
         "type": "function",
         "z": "f1c27791682cd627",
+        "g": "1a1f49435933da97",
         "name": "Parse Cards",
         "func": "jssoup = jsSoup.default\n\ndata = []\n\nmsg.payload.forEach(card =>{ \n    \n    var soup = new jssoup(card);\n    \n    meeting = soup.find('i')\n    \n    entry = {}\n    entry.meetingDate = meeting.text.trim()\n    entry.rows = []\n    \n    rows = soup.findAll('tr')\n\n    rows.forEach(row =>{\n        \n      row = row.text.split(\" \")\n      \n      if(row[0] !== \"Target\") {\n      \n          targetRate = `${row[0]} - ${row[2]}`\n          \n          row = row[3].split(\"%\")\n          \n          entry.rows.push({\n              \"targetRate\": targetRate,\n              \"currentProb\": row[0],\n              \"previousDayProb\": row[1],\n              \"previousWeekProb\": row[2]\n          })\n\n      }\n        \n    })\n    \n    data.push(entry)\n    \n})\n\nmsg.data = data\n\nreturn msg;",
         "outputs": 1,
@@ -694,7 +909,7 @@
             }
         ],
         "x": 810,
-        "y": 140,
+        "y": 100,
         "wires": [
             [
                 "27906d69ba913f10"
@@ -702,19 +917,10 @@
         ]
     },
     {
-        "id": "f5bc5b8806607835",
-        "type": "comment",
-        "z": "f1c27791682cd627",
-        "name": "Fed Rate",
-        "info": "",
-        "x": 260,
-        "y": 100,
-        "wires": []
-    },
-    {
         "id": "fba2be9c0fbd2527",
         "type": "inject",
         "z": "f1c27791682cd627",
+        "g": "1a1f49435933da97",
         "name": "Date",
         "props": [
             {
@@ -733,7 +939,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 130,
-        "y": 120,
+        "y": 80,
         "wires": [
             [
                 "6d835c98a7d933c5"
@@ -744,6 +950,7 @@
         "id": "08470656f5161693",
         "type": "inject",
         "z": "f1c27791682cd627",
+        "g": "1a1f49435933da97",
         "name": "Default",
         "props": [
             {
@@ -758,7 +965,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 160,
+        "y": 120,
         "wires": [
             [
                 "6d835c98a7d933c5"
@@ -769,6 +976,7 @@
         "id": "3df6b4ba4e138e27",
         "type": "link out",
         "z": "f1c27791682cd627",
+        "g": "1a1f49435933da97",
         "name": "Discord Out Shortcut",
         "mode": "link",
         "links": [
@@ -776,13 +984,14 @@
             "629b2f47e063001c"
         ],
         "x": 1175,
-        "y": 140,
+        "y": 100,
         "wires": []
     },
     {
         "id": "e74d700b075e28df",
         "type": "template",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Chart HTML",
         "field": "payload",
         "fieldType": "msg",
@@ -790,8 +999,8 @@
         "syntax": "mustache",
         "template": "<style>\n  body {\n  background-color: #2f3136 !important,\n  }\n  </style>\n<body>\n<div style=\"background-color: #2f3136\" height=\"{{height}}\" width=\"300px\">\n  <canvas id=\"myChart\"></canvas>\n</div>\n</body>\n<script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>\n<script src=\"https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2\"></script>\n\n<script>\n  const ctx = document.getElementById('myChart');\n\n  new Chart(ctx, {\n    type: 'bar',\n    data: {\n      labels: [\n        {{#poll.options}}\n        '{{label}}',\n        {{/poll.options}}\n      ],\n      datasets: [{\n         barPercentage: .8,\n    categoryPercentage: .8,\n        //label: '# of Votes',\n        data: [\n          {{#poll.options}}\n          {{count}},\n          {{/poll.options}}\n        ],\n         backgroundColor: [\n      {{#colors}}\n        '{{.}}',\n      {{/colors}}\n    ],\n        borderWidth: 1\n      }]\n    },\n    plugins: [ChartDataLabels],\n    options: {\n         responsive: true,\n    maintainAspectRatio: false,\n    animation: false,\n    animations: { colors: false, x: false },\n    transitions: { active: {animation: {duration: 0}}},\n    plugins: {\n\n      legend: {\n      display: false\n    },\n      // Change options for ALL labels of THIS CHART\n      datalabels: {\n        color: '#fff',\n        anchor: \"end\",\n        align: \"end\",\n        offset: 15\n      }\n    },\n      indexAxis: 'y',\n      scales: {\n      y: {\n        grid: {\n      display: false\n    },\n         color: \"#fff\",\n         ticks: {\n            color: \"#fff\"\n         }\n      },\n        x: {\n          grid: {\n      display: false\n    },\n        display: false,\n        grace: 1,\n          beginAtZero: true,\n          ticks: {\n            precision: 0,\n            color: \"#fff\",\n          },\n          color: \"#fff\"\n        }\n      }\n    }\n  });\n</script>",
         "output": "str",
-        "x": 570,
-        "y": 600,
+        "x": 590,
+        "y": 560,
         "wires": [
             [
                 "fd79bf6f0c8841f8"
@@ -802,13 +1011,14 @@
         "id": "5a521abdfb080630",
         "type": "http in",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Poll Endpoint",
         "url": "/pollChart/:id",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 270,
-        "y": 600,
+        "x": 290,
+        "y": 560,
         "wires": [
             [
                 "f4e8217ddb6b0744"
@@ -819,17 +1029,19 @@
         "id": "f68e6bae010a94ac",
         "type": "http response",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Render",
         "statusCode": "200",
         "headers": {},
-        "x": 900,
-        "y": 600,
+        "x": 920,
+        "y": 560,
         "wires": []
     },
     {
         "id": "f4e8217ddb6b0744",
         "type": "function",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Get Poll",
         "func": "polls = flow.get('polls')\n\nCOLORS = {\n    multiple_choice: [\n        '#F1A600',\n        '#F3BC00',\n        '#F5D300',\n        '#F7E900',\n        '#F9FF00'\n    ],\n    yes_or_no: [\n        '#3aa35b',\n        '#fe4648',\n    ],\n    profitability: [\n        '#3aa35b',\n        '#fe4648',\n        '#6f7682'\n    ]\n}\n\nid = parseInt(msg.req.params.id)\n\npolls.forEach(poll =>{\n    if(parseInt(poll.id) === id) {\n        if(poll.type) {\n            msg.colors = COLORS[poll.type]\n        } else {\n            msg.colors = poll.options.length === 2 ? COLORS[\"yes_or_no\"]\n                : poll.options.length === 3 ? COLORS[\"profitability\"]\n                : COLORS[\"multiple_choice\"]\n        }\n        msg.poll = poll\n    }\n})\n\nreturn msg",
         "outputs": 1,
@@ -837,8 +1049,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
-        "y": 600,
+        "x": 440,
+        "y": 560,
         "wires": [
             [
                 "e74d700b075e28df"
@@ -849,6 +1061,7 @@
         "id": "fd79bf6f0c8841f8",
         "type": "function",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Apostrophe Fix",
         "func": "msg.payload = msg.payload.replace(\"&#39;\", \"\\\\'\")\nreturn msg;",
         "outputs": 1,
@@ -856,8 +1069,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 740,
-        "y": 600,
+        "x": 760,
+        "y": 560,
         "wires": [
             [
                 "f68e6bae010a94ac"
@@ -868,26 +1081,29 @@
         "id": "f11f52296125c659",
         "type": "comment",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Polls Command Handler",
         "info": "",
-        "x": 310,
-        "y": 280,
+        "x": 330,
+        "y": 240,
         "wires": []
     },
     {
         "id": "d64b58feca19e354",
         "type": "comment",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Polls Chart Rendering Endpoint (https://dev.ascendedtrading.com/pollChart/:id)",
         "info": "",
-        "x": 470,
-        "y": 560,
+        "x": 490,
+        "y": 520,
         "wires": []
     },
     {
         "id": "b7d7b6a99797f04e",
         "type": "function",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Poll Builder",
         "func": "polls = flow.get('polls')\n\nif(!polls) {\n    flow.set('polls', [])\n    polls = flow.get('polls')\n}\n\nCOLORS = {\n    green: 3,\n    red: 4,\n    blue: 1,\n    grey: 2\n}\n\ntimestamp = moment(new Date()).utc().valueOf()\n\npoll = {\n    id: timestamp,\n    type: msg.subcommand,\n    automated: true,\n    label: msg.payload,\n    userIds: [],\n    options: []\n}\n\nmsg.components = [{\n    type: 1,\n    components: []\n}]\n\nmsg.options.forEach(option =>{\n\n    custom_id = \"dev_\" + timestamp + \"_\" + option.label.replace(/[^a-z0-9]/gi, '').slice(0, 10)\n\n    msg.components[0].components.push({\n        type: 2,\n        label: option.label,\n        style: option.color ? COLORS[option.color] : COLORS[\"grey\"],\n        custom_id: custom_id\n    })\n\n    poll.options.push({\n        type: msg.subcommand,\n        count: 0,\n        label: option.label,\n        custom_id: custom_id\n    })\n})\n\npolls.push(poll)\n\nmsg.id = timestamp\nmsg.label = msg.payload\nmsg.selector = \"#myChart\"\nmsg.filename = \"poll\"\nmsg.url = `http://dev.ascendedtrading.com/pollChart/${timestamp}`\n\nreturn msg;",
         "outputs": 1,
@@ -900,8 +1116,8 @@
                 "module": "moment"
             }
         ],
-        "x": 1150,
-        "y": 360,
+        "x": 1170,
+        "y": 320,
         "wires": [
             [
                 "e927da87be2dd402"
@@ -912,6 +1128,7 @@
         "id": "70c1f11841f41a4c",
         "type": "function",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Create Discord Embed",
         "func": " msg.embeds = {\n        \"description\": \"**Poll:** \" + msg.label,\n        \"color\": 0,\n        \"author\": {\n        },\n        \"fields\": [\n        ]\n}\n\n msg.embeds.image = {\n\n        \"url\": \"attachment://poll.png\"\n\n    }\n\n\nmsg.payload = {}\nmsg.interactionOptions = {}\n\nreturn msg;",
         "outputs": 1,
@@ -919,8 +1136,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1540,
-        "y": 420,
+        "x": 1560,
+        "y": 380,
         "wires": [
             [
                 "c7d5bae103d6acde"
@@ -931,14 +1148,15 @@
         "id": "e927da87be2dd402",
         "type": "link call",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "",
         "links": [
             "9d7c3728357819a5"
         ],
         "linkType": "static",
         "timeout": "30",
-        "x": 1340,
-        "y": 420,
+        "x": 1360,
+        "y": 380,
         "wires": [
             [
                 "70c1f11841f41a4c"
@@ -949,28 +1167,30 @@
         "id": "c7d5bae103d6acde",
         "type": "link out",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Send Poll to Discord",
         "mode": "link",
         "links": [
             "18e87e645a79b0eb"
         ],
-        "x": 1675,
-        "y": 420,
+        "x": 1695,
+        "y": 380,
         "wires": []
     },
     {
         "id": "f96983d77c0d54cd",
         "type": "function",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Poll Message Update Builder",
-        "func": "polls = flow.get('polls')\n\npayload = false\n\npolls.forEach(poll => {\n    if(String(poll.id) === msg.interaction.id) {\n        payload = poll.label\n    }\n})\n\nnewMessage = {}\n\nnewMessage.selector = \"#myChart\"\nnewMessage.filename = \"poll\"\nnewMessage.id = msg.interaction.id\nnewMessage.label = payload\nnewMessage.action = \"edit\";\nnewMessage.message = msg.interaction.message.id;\nnewMessage.channel = msg.interaction.message.channelId;\n\nreturn newMessage;",
+        "func": "polls = flow.get('polls')\n\npayload = false\n\npolls.forEach(poll => {\n    if(String(poll.id) === msg.interaction.id) {\n        payload = poll.label\n    }\n})\n\nnewMessage = {}\n\nmsg.url = `http://dev.ascendedtrading.com/pollChart/${msg.interaction.id}`\nnewMessage.selector = \"#myChart\"\nnewMessage.filename = \"poll\"\nnewMessage.id = msg.interaction.id\nnewMessage.label = payload\nnewMessage.action = \"edit\";\nnewMessage.message = msg.interaction.message.id;\nnewMessage.channel = msg.interaction.message.channelId;\n\nreturn newMessage;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1120,
-        "y": 480,
+        "x": 1140,
+        "y": 440,
         "wires": [
             [
                 "e927da87be2dd402"
@@ -981,6 +1201,7 @@
         "id": "2e5385956f09fc65",
         "type": "trigger",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Buffer",
         "op1": "1",
         "op2": "1",
@@ -994,8 +1215,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 930,
-        "y": 480,
+        "x": 950,
+        "y": 440,
         "wires": [
             [
                 "f96983d77c0d54cd"
@@ -1006,6 +1227,7 @@
         "id": "898ae628b4296992",
         "type": "function",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Poll Vote Handler",
         "func": "polls = flow.get('polls')\n\ncustom_id = msg.payload.customId\nuserid = msg.payload.user.id\nid = custom_id.split('_')[0]\n\nupdate = false\n\npolls.forEach(poll =>{\n  if(String(poll.id) === id) {\n    if(!poll.userIds.includes(userid)) {\n      poll.userIds.push(userid)\n      update = true\n\n      poll.options.forEach(option =>{\n        if(option.custom_id == custom_id) {\n          option.count++\n        }\n      })\n    }\n  }\n})\n\nmsg.interaction = msg.payload\nmsg.interaction.id = id\n\nif(update) {\n  return msg;\n}",
         "outputs": 1,
@@ -1013,8 +1235,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 760,
-        "y": 480,
+        "x": 780,
+        "y": 440,
         "wires": [
             [
                 "2e5385956f09fc65"
@@ -1025,6 +1247,7 @@
         "id": "67f8681ae8997d4c",
         "type": "switch",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "",
         "property": "payload.commandName",
         "propertyType": "msg",
@@ -1038,8 +1261,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 490,
-        "y": 360,
+        "x": 510,
+        "y": 320,
         "wires": [
             [
                 "63c48994a07d1c16"
@@ -1050,6 +1273,7 @@
         "id": "63c48994a07d1c16",
         "type": "change",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "",
         "rules": [
             {
@@ -1065,8 +1289,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 660,
-        "y": 360,
+        "x": 680,
+        "y": 320,
         "wires": [
             [
                 "23aee976ac3901fd"
@@ -1077,6 +1301,7 @@
         "id": "23aee976ac3901fd",
         "type": "switch",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "",
         "property": "subcommand",
         "propertyType": "msg",
@@ -1100,8 +1325,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 3,
-        "x": 830,
-        "y": 360,
+        "x": 850,
+        "y": 320,
         "wires": [
             [
                 "77cc0db87e2b8b92"
@@ -1118,6 +1343,7 @@
         "id": "77cc0db87e2b8b92",
         "type": "function",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "yes_or_no",
         "func": "// Only accessible via slash command\n// msg.payload = msg.interactionObject.options.getString('question')\n\nmsg.payload = \"Example\"\n\nmsg.options = [\n    {\n        label: \"Yes\",\n        color: \"green\"\n    },\n    {\n        label: \"No\",\n        color: \"red\"\n    },\n]\n\nreturn msg;",
         "outputs": 1,
@@ -1125,8 +1351,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 970,
-        "y": 320,
+        "x": 990,
+        "y": 280,
         "wires": [
             [
                 "b7d7b6a99797f04e"
@@ -1137,6 +1363,7 @@
         "id": "7a9260b9f1d32379",
         "type": "function",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "profitability",
         "func": "// Only accessible via Slash Commands\n// msg.payload = \"**Anonymous Profitability Check**\\n\" + msg.interactionObject.options.getString('play')\n\nmsg.payload = \"**Anonymous Profitability Check**\\nExample\"\n\nmsg.options = [\n    {\n        label: \"Green\",\n        color: \"green\"\n    },\n    {\n        label: \"Red\",\n        color: \"red\"\n    },\n    {\n        label: \"Didn't Trade\",\n        color: \"grey\"\n    }\n]\n\nreturn msg;",
         "outputs": 1,
@@ -1144,8 +1371,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 970,
-        "y": 360,
+        "x": 990,
+        "y": 320,
         "wires": [
             [
                 "b7d7b6a99797f04e"
@@ -1156,6 +1383,7 @@
         "id": "affdb321e91890d7",
         "type": "function",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "multiple_choice",
         "func": "msg.options = []\n\nmsg.payload.options._hoistedOptions.forEach(option => {\n    if(option.name.includes(\"option\")) {\n        msg.options.push({label: option.value})\n    }\n})\n\n// Only accessible via Slash Commands\n// msg.payload = msg.interactionObject.options.getString('question')\n\nmsg.payload = \"Example\"\n\nreturn msg;\n\n",
         "outputs": 1,
@@ -1163,8 +1391,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 980,
-        "y": 400,
+        "x": 1000,
+        "y": 360,
         "wires": [
             [
                 "b7d7b6a99797f04e"
@@ -1175,12 +1403,13 @@
         "id": "01d09995f43d6492",
         "type": "link in",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "link in 1",
         "links": [
             "19072270ad5a3489"
         ],
-        "x": 515,
-        "y": 480,
+        "x": 535,
+        "y": 440,
         "wires": [
             [
                 "3359a2710a791fb3"
@@ -1191,6 +1420,7 @@
         "id": "3359a2710a791fb3",
         "type": "switch",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "",
         "property": "topic",
         "propertyType": "msg",
@@ -1204,8 +1434,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 600,
-        "y": 480,
+        "x": 620,
+        "y": 440,
         "wires": [
             [
                 "898ae628b4296992"
@@ -1216,16 +1446,18 @@
         "id": "09df724c238db629",
         "type": "comment",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Vote Handler",
         "info": "",
-        "x": 570,
-        "y": 440,
+        "x": 590,
+        "y": 400,
         "wires": []
     },
     {
         "id": "3f16b7e976903c94",
         "type": "function",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Test Data",
         "func": "msg.payload = {\n   \"type\":\"APPLICATION_COMMAND\",\n   \"id\":\"1046181133542498384\",\n   \"user\":{\n      \"id\":\"768562231964860426\",\n      \"bot\":false,\n      \"system\":false,\n      \"flags\":0,\n      \"username\":\"Conqueror\",\n      \"discriminator\":\"6969\",\n      \"avatar\":\"dacf6c92a453cbec508c7c7bc5150f58\",\n      \"banner\":\"0ecef034f56285a73efd5720d167aac9\",\n      \"accentColor\":null,\n      \"createdTimestamp\":1603309915296,\n      \"defaultAvatarURL\":\"https://cdn.discordapp.com/embed/avatars/4.png\",\n      \"hexAccentColor\":null,\n      \"tag\":\"Conqueror#6969\",\n      \"avatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"displayAvatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"bannerURL\":\"https://cdn.discordapp.com/banners/768562231964860426/0ecef034f56285a73efd5720d167aac9.webp\"\n   },\n   \"version\":1,\n   \"appPermissions\":\"1072772402753\",\n   \"memberPermissions\":\"4398046511103\",\n   \"locale\":\"en-US\",\n   \"guildLocale\":\"en-US\",\n   \"commandId\":\"1045957132975079489\",\n   \"commandName\":\"poll\",\n   \"deferred\":true,\n   \"replied\":false,\n   \"ephemeral\":false,\n   \"options\":{\n      \"_group\":null,\n      \"_subcommand\":\"profitability\",\n      \"_hoistedOptions\":[\n         {\n            \"name\":\"play\",\n            \"type\":\"STRING\",\n            \"value\":\"Example\"\n         }\n      ]\n   },\n   \"replyMessage\":{\n      \"channelId\":\"1045767424575819886\",\n      \"guildId\":\"994590548520345710\",\n      \"id\":\"1046181134272311357\",\n      \"createdTimestamp\":1669499419516,\n      \"type\":\"APPLICATION_COMMAND\",\n      \"system\":false,\n      \"content\":\"\",\n      \"authorId\":\"903343207323148349\",\n      \"pinned\":false,\n      \"tts\":false,\n      \"embeds\":[\n         \n      ],\n      \"components\":[\n         \n      ],\n      \"attachments\":[\n         \n      ],\n      \"stickers\":[\n         \n      ],\n      \"editedTimestamp\":null,\n      \"activity\":null,\n      \"flags\":128,\n      \"reference\":null,\n      \"cleanContent\":\"\"\n   }\n}\n\nreturn msg;",
         "outputs": 1,
@@ -1233,8 +1465,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 360,
+        "x": 380,
+        "y": 320,
         "wires": [
             [
                 "67f8681ae8997d4c"
@@ -1245,6 +1477,7 @@
         "id": "46899ef52d0a2edf",
         "type": "inject",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Profitability Command",
         "props": [
             {
@@ -1262,8 +1495,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 180,
-        "y": 360,
+        "x": 200,
+        "y": 320,
         "wires": [
             [
                 "3f16b7e976903c94"
@@ -1274,6 +1507,7 @@
         "id": "40e7a2896685adbc",
         "type": "function",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Test Data",
         "func": "msg.payload = {\n   \"type\":\"APPLICATION_COMMAND\",\n   \"id\":\"1046181133542498384\",\n   \"user\":{\n      \"id\":\"768562231964860426\",\n      \"bot\":false,\n      \"system\":false,\n      \"flags\":0,\n      \"username\":\"Conqueror\",\n      \"discriminator\":\"6969\",\n      \"avatar\":\"dacf6c92a453cbec508c7c7bc5150f58\",\n      \"banner\":\"0ecef034f56285a73efd5720d167aac9\",\n      \"accentColor\":null,\n      \"createdTimestamp\":1603309915296,\n      \"defaultAvatarURL\":\"https://cdn.discordapp.com/embed/avatars/4.png\",\n      \"hexAccentColor\":null,\n      \"tag\":\"Conqueror#6969\",\n      \"avatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"displayAvatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"bannerURL\":\"https://cdn.discordapp.com/banners/768562231964860426/0ecef034f56285a73efd5720d167aac9.webp\"\n   },\n   \"version\":1,\n   \"appPermissions\":\"1072772402753\",\n   \"memberPermissions\":\"4398046511103\",\n   \"locale\":\"en-US\",\n   \"guildLocale\":\"en-US\",\n   \"commandId\":\"1045957132975079489\",\n   \"commandName\":\"poll\",\n   \"deferred\":true,\n   \"replied\":false,\n   \"ephemeral\":false,\n   \"options\":{\n      \"_group\": null,\n      \"_subcommand\": \"yes_or_no\",\n      \"_hoistedOptions\": [\n         {\n            \"name\": \"question\",\n            \"type\": \"STRING\",\n            \"value\": \"Example\"\n         }\n      ]\n   },\n   \"replyMessage\":{\n      \"channelId\":\"1045767424575819886\",\n      \"guildId\":\"994590548520345710\",\n      \"id\":\"1046181134272311357\",\n      \"createdTimestamp\":1669499419516,\n      \"type\":\"APPLICATION_COMMAND\",\n      \"system\":false,\n      \"content\":\"\",\n      \"authorId\":\"903343207323148349\",\n      \"pinned\":false,\n      \"tts\":false,\n      \"embeds\":[\n         \n      ],\n      \"components\":[\n         \n      ],\n      \"attachments\":[\n         \n      ],\n      \"stickers\":[\n         \n      ],\n      \"editedTimestamp\":null,\n      \"activity\":null,\n      \"flags\":128,\n      \"reference\":null,\n      \"cleanContent\":\"\"\n   }\n}\n\nreturn msg;",
         "outputs": 1,
@@ -1281,8 +1515,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 320,
+        "x": 380,
+        "y": 280,
         "wires": [
             [
                 "67f8681ae8997d4c"
@@ -1293,6 +1527,7 @@
         "id": "21c5e451ca661bf1",
         "type": "inject",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Yes_or_no Command",
         "props": [
             {
@@ -1310,8 +1545,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 180,
-        "y": 320,
+        "x": 200,
+        "y": 280,
         "wires": [
             [
                 "40e7a2896685adbc"
@@ -1322,6 +1557,7 @@
         "id": "2a39995f04207c2a",
         "type": "function",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Test Data",
         "func": "msg.payload = {\n   \"type\":\"APPLICATION_COMMAND\",\n   \"id\":\"1046181133542498384\",\n   \"user\":{\n      \"id\":\"768562231964860426\",\n      \"bot\":false,\n      \"system\":false,\n      \"flags\":0,\n      \"username\":\"Conqueror\",\n      \"discriminator\":\"6969\",\n      \"avatar\":\"dacf6c92a453cbec508c7c7bc5150f58\",\n      \"banner\":\"0ecef034f56285a73efd5720d167aac9\",\n      \"accentColor\":null,\n      \"createdTimestamp\":1603309915296,\n      \"defaultAvatarURL\":\"https://cdn.discordapp.com/embed/avatars/4.png\",\n      \"hexAccentColor\":null,\n      \"tag\":\"Conqueror#6969\",\n      \"avatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"displayAvatarURL\":\"https://cdn.discordapp.com/avatars/768562231964860426/dacf6c92a453cbec508c7c7bc5150f58.webp\",\n      \"bannerURL\":\"https://cdn.discordapp.com/banners/768562231964860426/0ecef034f56285a73efd5720d167aac9.webp\"\n   },\n   \"version\":1,\n   \"appPermissions\":\"1072772402753\",\n   \"memberPermissions\":\"4398046511103\",\n   \"locale\":\"en-US\",\n   \"guildLocale\":\"en-US\",\n   \"commandId\":\"1045957132975079489\",\n   \"commandName\":\"poll\",\n   \"deferred\":true,\n   \"replied\":false,\n   \"ephemeral\":false,\n   \"options\":{\n      \"_group\": null,\n      \"_subcommand\": \"multiple_choice\",\n      \"_hoistedOptions\": [\n         {\n            \"name\": \"question\",\n            \"type\": \"STRING\",\n            \"value\": \"Example\"\n         },\n         {\n            \"name\": \"option_one\",\n            \"type\": \"STRING\",\n            \"value\": \"One\"\n         },\n         {\n            \"name\": \"option_two\",\n            \"type\": \"STRING\",\n            \"value\": \"Two\"\n         },\n         {\n            \"name\": \"option_three\",\n            \"type\": \"STRING\",\n            \"value\": \"Three\"\n         },\n         {\n            \"name\": \"option_four\",\n            \"type\": \"STRING\",\n            \"value\": \"Four\"\n         },\n         {\n            \"name\": \"option_five\",\n            \"type\": \"STRING\",\n            \"value\": \"Five\"\n         }\n      ]\n   },\n   \"replyMessage\":{\n      \"channelId\":\"1045767424575819886\",\n      \"guildId\":\"994590548520345710\",\n      \"id\":\"1046181134272311357\",\n      \"createdTimestamp\":1669499419516,\n      \"type\":\"APPLICATION_COMMAND\",\n      \"system\":false,\n      \"content\":\"\",\n      \"authorId\":\"903343207323148349\",\n      \"pinned\":false,\n      \"tts\":false,\n      \"embeds\":[\n         \n      ],\n      \"components\":[\n         \n      ],\n      \"attachments\":[\n         \n      ],\n      \"stickers\":[\n         \n      ],\n      \"editedTimestamp\":null,\n      \"activity\":null,\n      \"flags\":128,\n      \"reference\":null,\n      \"cleanContent\":\"\"\n   }\n}\n\nreturn msg;",
         "outputs": 1,
@@ -1329,8 +1565,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 400,
+        "x": 380,
+        "y": 360,
         "wires": [
             [
                 "67f8681ae8997d4c"
@@ -1341,6 +1577,7 @@
         "id": "c76ac509d93cd979",
         "type": "inject",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Multiple_choice Command",
         "props": [
             {
@@ -1358,8 +1595,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 170,
-        "y": 400,
+        "x": 190,
+        "y": 360,
         "wires": [
             [
                 "2a39995f04207c2a"
@@ -1370,11 +1607,176 @@
         "id": "65976a82bb2ab639",
         "type": "comment",
         "z": "f1c27791682cd627",
+        "g": "aa549e3976ce96df",
         "name": "Connector is Currently Broken",
         "info": "",
-        "x": 1380,
-        "y": 380,
+        "x": 1400,
+        "y": 340,
         "wires": []
+    },
+    {
+        "id": "c1c14b35f4ff7bd6",
+        "type": "function",
+        "z": "279b5e85f337e814",
+        "g": "e248a3a8bfe42597",
+        "name": "Load mcal to Discord Events",
+        "func": "// mcal = global.get('mcal') Core has this stored\n// moment = global.get('moment') This was a legacy way of handling imports\n// moment is now imported via the \"Setup\" tab on this node\n\nmcal = msg.payload\ndiscordCalendarAdded = flow.get('discordCalendarAdded')\n\nif(!discordCalendarAdded) {\n    flow.set('discordCalendarAdded', [])\n    discordCalendarAdded = flow.get('discordCalendarAdded')\n}\n\nnow = moment()\ncount = 0\n\nmcal.forEach(day => {\n    if(count <= 1) {\n    if(!discordCalendarAdded.includes(day.date))\n    {\n        discordCalendarAdded.push(day.date)\n        \n        day.events.forEach(event => {\n            if(event.impact > 1) {\n                timestamp = moment(`${day.date}`, \"x\")\n                time = event.time.split(\":\")\n                time = timestamp.hours(time[0]).minutes(time[1])\n                if(!time.isBefore(now)) {\n                    \n                    name = event.name\n                    \n                    if(event.impact === 3) {\n                        name = \"HIGH IMPACT: \" + name\n                    }\n\n                    description = `**Event Time:** ${time.format('LT')}`\n\n                    if(event.previous) {\n                        description = description + `\\n**Previous:** ${event.previous}`\n                    }\n\n                    if (event.consensus) {\n                        description = description + `\\n**Consensus:** ${event.consensus}`\n                    }\n\n                    if (event.forecast) {\n                        description = description + `\\n**Forecast:** ${event.forecast}`\n                    }\n\n                    msg.payload = {\n                        name: event.name,\n                        privacy_level: 2,\n                        scheduled_start_time: time.subtract(1, \"minutes\").format(),\n                        scheduled_end_time: time.add(2, \"minutes\").format(),\n                        description: description,\n                        entity_metadata: {location: \"Economic Calendar\"},\n                        entity_type: 3\n                    }\n\n                    node.send(msg)\n                }\n            }\n        })\n    }\n    count++\n    }\n})\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 520,
+        "y": 80,
+        "wires": [
+            [
+                "106db5229832742d"
+            ]
+        ]
+    },
+    {
+        "id": "106db5229832742d",
+        "type": "delay",
+        "z": "279b5e85f337e814",
+        "g": "e248a3a8bfe42597",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "2",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 730,
+        "y": 80,
+        "wires": [
+            [
+                "fb4b5a415af84a64"
+            ]
+        ]
+    },
+    {
+        "id": "c3154cb84fa6828f",
+        "type": "http request",
+        "z": "279b5e85f337e814",
+        "g": "e248a3a8bfe42597",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://discord.com/api/guilds/832633555309166633/scheduled-events",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "Authorization",
+                "valueType": "other",
+                "valueValue": "Bot "
+            },
+            {
+                "keyType": "other",
+                "keyValue": "User-Agent",
+                "valueType": "other",
+                "valueValue": "DiscordBot (https://discord.com, 1)"
+            }
+        ],
+        "x": 890,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "87c96848841d271a",
+        "type": "link call",
+        "z": "279b5e85f337e814",
+        "g": "e248a3a8bfe42597",
+        "name": "",
+        "links": [
+            "34ff5c41b8079126"
+        ],
+        "linkType": "static",
+        "timeout": "30",
+        "x": 310,
+        "y": 80,
+        "wires": [
+            [
+                "c1c14b35f4ff7bd6"
+            ]
+        ]
+    },
+    {
+        "id": "fb4b5a415af84a64",
+        "type": "debug",
+        "z": "279b5e85f337e814",
+        "g": "e248a3a8bfe42597",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "cc3346dd2765db98",
+        "type": "comment",
+        "z": "279b5e85f337e814",
+        "g": "e248a3a8bfe42597",
+        "name": "Request Example",
+        "info": "",
+        "x": 910,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "fe693f292505bb4c",
+        "type": "inject",
+        "z": "279b5e85f337e814",
+        "g": "e248a3a8bfe42597",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "05 00 * * *",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 80,
+        "wires": [
+            [
+                "87c96848841d271a"
+            ]
+        ]
     },
     {
         "id": "ae5cf8f5fe631665",
